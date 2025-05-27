@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+:root {
+    --primary-color: #72aec8;
+    --black-color: black;
+    --white-color: white;
+}
+
+
+html {
+    font-family: Poppins;
+    scroll-behavior: smooth;
+}
+
+/* .head_foot_cont_full {
+    background-color: brown !important;
+    width: 100%;
+} */
+
+.head_foot_cont {
+    /* background-color: yellowgreen !important; */
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 50px;
+}
+
+/* 
+@media (min-width: 1441px) {
+    .head_foot_cont {
+    }
+} */
+
+/* footer.head_foot_cont_full {
+    padding: 30px 50px;
+} */
+ 

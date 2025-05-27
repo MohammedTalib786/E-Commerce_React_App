@@ -1,0 +1,8 @@
+a.active {
+    color: #1447e6;
+    font-weight: 500;
+}
+
+a.pending {
+    color: #0f172b;
+}

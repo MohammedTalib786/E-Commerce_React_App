@@ -1,0 +1,10 @@
+/* >>>>>>>>>>>>> Removing Arrows from the Input bar */
+#qunt_val::-webkit-outer-spin-button,
+#qunt_val::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>> Button Transitions */
+/* qnty_btns */

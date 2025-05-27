@@ -1,0 +1,55 @@
+.add_to_cart_btn,
+.prod_card,
+.prod_card:hover {
+    transition: all .25s ease-in-out;
+}
+
+.add_to_cart_btn {
+    opacity: 0;
+    pointer-events: none;
+    top: 310px;
+}
+
+.prod_card:hover .add_to_cart_btn {
+    opacity: 1;
+    pointer-events: all;
+    top: 290px;
+}
+
+/* add_to_cart_btn */
+
+
+.item_added_toolTip::after {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background-color: #72aec8;
+    position: absolute;
+    bottom: -9px;
+    right: 95px;
+    transform: rotate(45deg) translate(0px, 0px);
+
+}
+
+.item_added_toolTip {
+    transition: all .25s ease-in-out;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>> ToolTip Style */
+
+/* .toolTipStyle {
+    opacity: 1;
+    scale: 1;
+    pointer-events: all;
+    transform: translate(0px, 0px);
+    transition: all .45s ease-in-out;
+}
+
+.toolTipStyleToggle {
+    opacity: 0;
+    scale: .5;
+    pointer-events: none;
+    transform: translate(0px, 70px);
+    transition: all .45s ease-in-out;
+} */
+
