@@ -34,7 +34,6 @@ const Cart = () => {
                 <div className="cart_card_cont w-full px-[50px] flex gap-[35px] "  >
 
                     {
-
                         cartProducts.length <= 0
                             ? <CartCardForEmpty />
                             : (

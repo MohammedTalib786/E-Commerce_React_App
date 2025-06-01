@@ -1,15 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCart } from '../../../../contexts/ProdProvider';
 import ShippingForm from '../../ShippingComp/ShippingForm';
 import './orderSummary.css'
 
+import CartAccordian from '../OrderSummary/CartAccordian/CartAccordian'
+import { useShippingDetails } from '../../../../contexts/ShippingDetProvider';
+
 const OrderSummary = () => {
 
-    let { cartProducts, changeQuantityFunc, removeFromCartFunc } = useCart();
+    let [isVisible, setIsVisible] = useState(false);
+
+    let { shippingDetails } = useShippingDetails();
+    let [pincode, states, town_city] = [shippingDetails.pincode, shippingDetails.states, shippingDetails.town_city]
+
+    let [shippingMsgText, setShippingMsgText] = useState('Calculate Shipping');
+
+    console.log('shippingDetails in ordr Summ', shippingDetails)
+
+
+    useEffect(() => {
+        town_city !== '' ? setShippingMsgText('Update Shipping Details') : setShippingMsgText('Calculate Shipping')
+    }, [shippingDetails])
+
+    
+
+    let { cartProducts } = useCart();
+
     let cartItemTotal = 0
+
     cartProducts.map(elem => cartItemTotal += (elem.price * elem.quantity))
 
-    console.log('cartItemTotal', cartItemTotal)
+    // console.log('cartItemTotal', cartItemTotal)
 
 
     const [calculateShippingBtn, setCalculateShippingBtn] = useState(false);
@@ -31,38 +52,33 @@ const OrderSummary = () => {
                     <p className='  text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >&#8377;{cartItemTotal}</p>
                 </div>
 
+
+
+                {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Shipping Comp */}
                 <div className="shipping flex flex-col gap-[8px] "   >
                     <h3 className='  text-[22px]/[28px] w-[100%]  ' > Shipping </h3>
-                    <p className='  text-[22px]/[28px] w-[100%] text-[var(--primary-color)] '
-                        onClick={handlerCalculateShipping}
-                    > Calculate Shipping </p>
+
+
+                    {/* >>>>>>>>>>>>>>>> Shipping Info Message Comp */}
                     {
-                        calculateShippingBtn && <ShippingForm />
+                        town_city &&
+                        <div className="shippingDetailsInfo pt-[8px]  ">
+                            Shipping to {town_city}, {pincode}, {states}
+                            {/* DEMO: Shipping to Mum, 70, Maha, */}
+                        </div>
                     }
 
-                </div>
-
-                <div className="bg-cyan-300 theAccord  ">
-                    <h3>Hello Accord</h3>
-
-
-
-                    <details>
-                        <summary>Click to Expand</summary>
-                        <div class="content">
-                            <p>This is the content inside the dropdown. It expands with a smooth animation using CSS transitions.</p>
-                        </div>
-                    </details>
-
-                    
-<div className="bg-red-200 h-[50px] "></div>
-                    
-                    
-
-
-
+                    <CartAccordian
+                        isVisible={isVisible}
+                        setIsVisible={setIsVisible}
+                        tab_title={shippingMsgText}
+                        tab_desc={<ShippingForm setIsVisible={setIsVisible} />}
+                    />
 
                 </div>
+                {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ENDS Shipping Comp */}
+
+
 
             </div>
         </div>

@@ -8,6 +8,7 @@ import Error404Page from './Pages/404Page/Error404Page';
 import Products from './Pages/Products_List/Products';
 import CartPage from './Pages/Cart/CartPage';
 import { ProdProvider } from './contexts/ProdProvider';
+import { ShippingDetProvider } from './contexts/ShippingDetProvider';
 import ProductDetail from './Pages/Product_Detail/ProductDetail';
 import TestPage from './Pages/Test/TestPage';
 import Contact from './Pages/Contact/Contact';
@@ -24,6 +25,24 @@ const App = () => {
     // }
   ])
 
+
+
+  let [shippingDetails, setShippingDetails] = useState({
+    town_city: "",
+    pincode: null,
+    states: ""
+  })
+  // console.log('shippingDetails Contxt', shippingDetails)
+
+  const addShippingDetails = (town_city, pincode, states) => {
+    console.log('Adding Shipping Det')
+    // console.log(theMessage)
+    setShippingDetails({
+      town_city: town_city,
+      pincode: pincode,
+      states: states
+    })
+  }
 
   // >>>>>>>>>>>>>> Get Cart Item
   useEffect(() => {
@@ -44,7 +63,7 @@ const App = () => {
       // console.log('existingItem', existingItem)
       if (existingItem) {
         // console.log('Existing Item')
-        return prevItem.map((prevElem) => prevElem.id === cartItem.id ? { ...prevElem, quantity: prevElem.quantity + cartItem.quantity } : prevElem )
+        return prevItem.map((prevElem) => prevElem.id === cartItem.id ? { ...prevElem, quantity: prevElem.quantity + cartItem.quantity } : prevElem)
       }
 
       return [...prevItem, cartItem]
@@ -73,31 +92,35 @@ const App = () => {
 
       <ProdProvider value={{ cartProducts, addToCartFunc, changeQuantityFunc, removeFromCartFunc }} >
 
-        <Routes>
+        <ShippingDetProvider value={{ shippingDetails, addShippingDetails }}  >
 
-          <Route path='/' element={<Layout />}  >
+          <Routes>
 
-            <Route index element={<HomePage />} />
+            <Route path='/' element={<Layout />}  >
 
-            <Route path='/about-us' element={<AboutPage />} />
+              <Route index element={<HomePage />} />
 
-            <Route path='/blogs' element={<BlogPage />} />
+              <Route path='/about-us' element={<AboutPage />} />
 
-            <Route path='/products' element={<Products />} />
+              <Route path='/blogs' element={<BlogPage />} />
 
-            <Route path='/products/:slug' element={<ProductDetail />} />
+              <Route path='/products' element={<Products />} />
 
-            <Route path='/cart' element={<CartPage />} />
+              <Route path='/products/:slug' element={<ProductDetail />} />
 
-            <Route path='/contact' element={<Contact />} />
+              <Route path='/cart' element={<CartPage />} />
 
-            <Route path='*' element={<Error404Page />} />
+              <Route path='/contact' element={<Contact />} />
 
-            <Route path='/test' element={<TestPage />} />
+              <Route path='*' element={<Error404Page />} />
 
-          </Route>
+              <Route path='/test' element={<TestPage />} />
 
-        </Routes>
+            </Route>
+
+          </Routes>
+
+        </ShippingDetProvider>
 
       </ProdProvider>
 

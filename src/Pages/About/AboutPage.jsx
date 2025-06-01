@@ -1,11 +1,12 @@
 import React from 'react'
 import Slider from '../../components/Slider/Slider'
-import { TestAccord } from '../../components/TestAccord/TestAccord'
-import { Button } from "@material-tailwind/react";
+import Accordian from '../../components/Accordian/Accordian'
+import InUseAccordExample from '../../components/Accordian/InUseAccordExample'
+
 
 const About = () => {
   return (
-    <div className="py-10 container m-auto h-screen ">
+    <div className="py-10 container m-auto  ">
 
       <h1 className=" text-3xl font-bold text-center pb-5 ">About Us</h1>
 
@@ -14,8 +15,12 @@ const About = () => {
 
       </div>
 
-      <TestAccord />
-      <Button>Button</Button>
+      <Accordian />
+
+      <div className="py-[20px] my-[30px] bg-red-300 "></div>
+
+      <InUseAccordExample />
+
 
     </div>
 

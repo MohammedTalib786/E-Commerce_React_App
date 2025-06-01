@@ -1,0 +1,19 @@
+
+
+.tab-desc {
+  background-color: grey;
+  padding: 30px 20px;
+  transition: all 2.5s ease-in-out ;
+  opacity: 1;
+  height: fit-content;
+  overflow: visible;
+  pointer-events: all;
+}
+
+.tab-desc.hide {
+  opacity: 0;
+  height: 0;
+  pointer-events: none;
+  padding: 0px 20px;
+  overflow: hidden;
+}

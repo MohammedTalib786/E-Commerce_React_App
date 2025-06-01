@@ -9,7 +9,7 @@ import { FaTruckFast } from "react-icons/fa6";
 import { BsBoxFill } from "react-icons/bs";
 import { PiCreditCardFill } from "react-icons/pi";
 import ImageGallerySlider from '../../components/PDP_Page/ImageGallerySliders/ImageGallerySlider';
-import Accordian from '../../components/PDP_Page/Accordian/Accordian';
+
 
 
 const ProductDetail = () => {
@@ -88,7 +88,7 @@ const ProductDetail = () => {
                         </div>
 
                         <div className="pt-[25px]">
-                            <Accordian />
+                            Accordian
                         </div>
 
 
