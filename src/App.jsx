@@ -35,7 +35,7 @@ const App = () => {
   // console.log('shippingDetails Contxt', shippingDetails)
 
   const addShippingDetails = (town_city, pincode, states) => {
-    console.log('Adding Shipping Det')
+    console.log('Adding Shipping Det');
     // console.log(theMessage)
     setShippingDetails({
       town_city: town_city,
@@ -44,16 +44,26 @@ const App = () => {
     })
   }
 
-  // >>>>>>>>>>>>>> Get Cart Item
+  // >>>>>>>>>>>>>> Get Cart Items and Shipping Details from Local Storage
   useEffect(() => {
     let getCartItems = JSON.parse(localStorage.getItem("cartItems"))
-    setCartProducts(getCartItems || [])
+    setCartProducts(getCartItems || []);
+
+    let getShippingDetails = JSON.parse(localStorage.getItem("shippingDetails"))
+    setShippingDetails(getShippingDetails || {});
   }, [])
 
   // >>>>>>>>>>>>>> Set Cart Item
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartProducts))
+    localStorage.setItem("cartItems", JSON.stringify(cartProducts));
   }, [cartProducts])
+
+
+  // >>>>>>>>>>>>>> Set Shipping Details
+  useEffect(() => {
+    localStorage.setItem("shippingDetails", JSON.stringify(shippingDetails));
+  }, [shippingDetails])
+
 
 
   const addToCartFunc = (cartItem) => {
