@@ -58,7 +58,7 @@ const CartCard = ({
 
                     />
                     <div className="text">
-                        <h3 className=' text-[24px]/[30px] ' >{prodName}</h3>
+                        <h3 className=' text-[22px]/[28px] ' >{prodName}</h3>
                         <h5 className=' text-[20px]/[28px] font-semi-bold text-[var(--primary-color)] ' >&#8377;{price}</h5>
                         <button
                             onClick={(e) => {

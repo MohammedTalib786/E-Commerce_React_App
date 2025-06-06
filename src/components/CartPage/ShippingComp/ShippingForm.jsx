@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import statesJSON from './states.json'
 import Button from '../../Button';
 import { useShippingDetails } from '../../../contexts/ShippingDetProvider';
@@ -8,25 +8,23 @@ const ShippingForm = ({
 }) => {
 
     let { shippingDetails, addShippingDetails } = useShippingDetails();
-    // console.log('shippingDetails in ship form comp ', shippingDetails)
-
-
-    const handlerDemo = () => {
-        console.log('Click Btn');
-        setIsVisible(prev => !prev);
-    }
-
     let [countryMsg, showCountryMsg] = useState(false);
     let [formData, setFormData] = useState({
         town_cityInp: "",
         pincodeInp: Number(""),
         stateInp: "Maharashtra"
     })
-    const regex = /^\d{6}$/;
     let [errorMsg, setErrorMsg] = useState({
         townCity: false,
         pincode: false
     })
+    const regex = /^\d{6}$/;
+    // console.log('shippingDetails in ship form comp ', shippingDetails)
+
+    const handlerDemo = () => {
+        console.log('Click Btn');
+        setIsVisible(prev => !prev);
+    }
 
     const handlerCountryInp = () => {
         showCountryMsg(true)
@@ -35,8 +33,7 @@ const ShippingForm = ({
 
     // >>>>>>>>>>>>>>>>>>>>> Form Validation
     const handlerSubmitForm = () => {
-        console.log("Button CLicked")
-        // addShippingDetails();
+        console.log("Button CLicked");
 
         if (formData.town_cityInp === '') {
             console.log('town city inp cant be empty!')
@@ -55,33 +52,25 @@ const ShippingForm = ({
         }
 
         else {
-            // console.log('form Data town_cityInp', formData.town_cityInp)
-            // console.log('form Data pincodeInp', formData.pincodeInp)
-            // console.log('form Data stateInp', formData.stateInp)
-
             // townCity, pincode, State
             addShippingDetails(formData.town_cityInp, formData.pincodeInp, formData.stateInp);
             setIsVisible(prev => !prev);
-            setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: "Maharashtra" })
+            // setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: "" })
+            setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: formData.stateInp })
         }
-
     }
 
-    // >>>>>>>>>>>> SET DATA
-    // useEffect(() => {
-    //     localStorage.setItem("shippingDetails", JSON.stringify(shippingDetailsObj))
-    // }, [shippingDetailsObj])
+    console.log('Outside Scope', shippingDetails.states)
 
+    useEffect(() => {
+        setFormData({ stateInp: shippingDetails.states })
+    }, [shippingDetails.states, shippingDetails.pincode, shippingDetails.town_city])
 
     return (
-
         <>
-            {/* <Button handlerClickBtnComp={handlerDemo} text='Demo Click' /> */}
-            {/* <div className=" flex flex-col gap-[18px] pt-[20px] "  > */}
-            <div className=" "  >
+            <div className=""  >
 
                 <div
-
                     className="shippingFormCont flex flex-col gap-[18px] pt-[20px] "
                 >
 
@@ -149,17 +138,14 @@ const ShippingForm = ({
 
                     {/* >>>>>>>>>>>>> Submit Button */}
                     <Button
+                        btnWidth='w-fit'
                         handlerClickBtnComp={handlerSubmitForm}
                         text='Update Details'
                     />
 
-
-
                 </div>
-
             </div>
         </>
-
     )
 }
 

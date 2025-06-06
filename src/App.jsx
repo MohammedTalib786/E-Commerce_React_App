@@ -12,6 +12,7 @@ import { ShippingDetProvider } from './contexts/ShippingDetProvider';
 import ProductDetail from './Pages/Product_Detail/ProductDetail';
 import TestPage from './Pages/Test/TestPage';
 import Contact from './Pages/Contact/Contact';
+import CheckoutPage from './Pages/Checkout/CheckoutPage';
 
 const App = () => {
   let [cartProducts, setCartProducts] = useState([
@@ -119,6 +120,8 @@ const App = () => {
               <Route path='/products/:slug' element={<ProductDetail />} />
 
               <Route path='/cart' element={<CartPage />} />
+
+              <Route path='/checkout' element={<CheckoutPage />} />
 
               <Route path='/contact' element={<Contact />} />
 

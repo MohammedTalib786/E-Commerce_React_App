@@ -5,6 +5,8 @@ import './orderSummary.css'
 
 import CartAccordian from '../OrderSummary/CartAccordian/CartAccordian'
 import { useShippingDetails } from '../../../../contexts/ShippingDetProvider';
+import Button from '../../../Button';
+import { useNavigate } from 'react-router-dom';
 
 const OrderSummary = () => {
 
@@ -22,7 +24,8 @@ const OrderSummary = () => {
 
     let [gstText, setGstText] = useState('')
 
-    // console.log('shippingDetails in ordr Summ', shippingDetails)
+    console.log('shippingDetails in ordr Summ', shippingDetails)
+    console.log('shippingDetails State in ordr Summ', shippingDetails.states)
 
     cartProducts.map(elem => cartItemSubTotal += (elem.price * elem.quantity))
 
@@ -71,26 +74,30 @@ const OrderSummary = () => {
         let gstCalc = ((cartItemTotal * 12) / (100 + 12));
 
         let text = '';
-        if (shippingDetails.states === 'Maharashtra') {
+
+        if (shippingDetails.states === 'Maharashtra' || shippingDetails.states === '', shippingDetails.states === undefined) {
             const halfGst = (gstCalc / 2).toFixed(2);
-            text = `includes ₹${halfGst} CGST, ₹${halfGst} SGST`;
+            text = `(includes <span className='  text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> CGST, ₹${halfGst} SGST)`;
         }
 
-        else {
-            text = `includes ₹${gstCalc.toFixed(2)} IGST`;
-        }
+        else text = `(includes ₹${gstCalc.toFixed(2)} IGST)`;
 
         // console.log('Setting gstText to:', text);
         setGstText(text);
 
-        console.log('gstText', text)
+        // console.log('gstText', text)
 
-        console.log('Main GST Text Call', gstText)
+        // console.log('Main GST Text Call', gstText)
 
     }, [cartItemTotal, shippingDetails.states,])
 
 
+    let navigate = useNavigate();
 
+    const handlerToCheckoutPage = (e) => {
+        e.preventDefault();
+        navigate("/checkout");
+    }
 
 
     // console.log('cartProducts in Order Summary', cartProducts)
@@ -136,19 +143,26 @@ const OrderSummary = () => {
                 {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Total Amt Comp */}
                 <div className="subtotal flex flex-col gap-[8px] "  >
                     <h3 className=' text-[22px]/[28px] w-[100%] ' > Total </h3>
-                    <div className="flex "  >
+                    <div className="flex items-center "  >
                         <p className='  text-[22px]/[28px] w-fit text-[var(--primary-color)] pr-[10px] ' >
                             &#8377;{cartItemTotal}
                         </p>
 
-                        {/* <p>(includes &#8377;50 CGST, &#8377;50 SGST) GST AMt: {GstAmt.toFixed(2)} </p> */}
-                        <p>(includes &#8377;50 CGST, &#8377;50 SGST) GST AMt:  </p>
+                        {/* >>>>>>>>>>>>>>>>>>>>>>>> Includes GST Text */}
+                        <p dangerouslySetInnerHTML={{ __html: gstText }} />
                     </div>
 
                 </div>
                 {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ENDS Total Amt Comp */}
 
+                {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Place Order Button */}
 
+                <Button
+                    handlerClickBtnComp={handlerToCheckoutPage}
+                    text='Place Order'
+                />
+
+                {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ENDS Place Order Button */}
 
             </div>
         </div>

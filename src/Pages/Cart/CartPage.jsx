@@ -38,7 +38,7 @@ const Cart = () => {
                             ? <CartCardForEmpty />
                             : (
                                 <>
-                                    <div className=" w-[70%] flex flex-col gap-[15px]  "  >
+                                    <div className=" w-[60%] flex flex-col gap-[15px]  "  >
                                         {
                                             cartProducts.map((elem, index) => <CartCard
                                                 key={`${elem.id}-${index}`} id={elem.id} prodName={elem.name} slug={elem.slug} price={elem.price} feat_img={elem.feat_img}
