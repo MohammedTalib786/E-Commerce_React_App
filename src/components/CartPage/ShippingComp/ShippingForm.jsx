@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import statesJSON from './states.json'
+import statesJSON from '../../states_JSON/states.json'
 import Button from '../../Button';
 import { useShippingDetails } from '../../../contexts/ShippingDetProvider';
 

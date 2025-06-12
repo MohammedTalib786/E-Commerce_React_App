@@ -27,11 +27,17 @@ const App = () => {
   ])
 
 
-
   let [shippingDetails, setShippingDetails] = useState({
+    first_name: "",
+    last_name: "",
+    company_name: "",
+    street_address: "",
     town_city: "",
+    states: "",
     pincode: null,
-    states: ""
+    phone_number: null,
+    email_address: ""
+
   })
   // console.log('shippingDetails Contxt', shippingDetails)
 

@@ -10,36 +10,26 @@ import 'swiper/css/pagination';
 import './productSlider.css'
 import ProductCard from '../ProductCard/ProductCard'
 import { Link } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
+import Loader from '../Loader/SingleRowSkeleton';
 
 
 const ProductSlider = ({
-
     title,
     urlText,
     urlVal,
     categoryName,
-    isFeatCollecion = false
 }) => {
 
-    let [data, setProdData] = useState([])
-
     let productsAPI = import.meta.env.VITE_PRODUCT_API_KEY;
-    useEffect(() => {
-        (async () => {
-            let data = await fetch(productsAPI);
-            let res = await data.json();
-            setProdData(res)
-        })()
+    let useProdList = useFetch(productsAPI);
 
-    }, [])
-    // console.log('setted data', data)
+    let loader = useProdList.loader;
+    let error = useProdList.error;
+    let prodData = useProdList.data;
 
-    let filteredData = data.filter((elem) => {
-        return elem.category == categoryName
-    })
-
+    let filteredData = prodData.filter((elem) => elem.category == categoryName)
     // console.log('filteredData Final ', filteredData)
-
 
     return (
 
@@ -56,7 +46,6 @@ const ProductSlider = ({
                 </Link>
             </div>
 
-
             <div className="prodSlider">
 
                 <Swiper
@@ -68,10 +57,17 @@ const ProductSlider = ({
                     loop={true}
 
                 >
+
                     {
-                        filteredData.map((elem) => {
-                            return <SwiperSlide> <ProductCard name={elem.name} price={elem.price.sale_price} featImg={elem.feat_img} urlToProd={elem.slug}  /> </SwiperSlide>
-                        })
+                        loader ?
+                            (<Loader />)
+                            : error ?
+                                (<p className="text-red-500">Something went wrong: {error.message}</p>) :
+                                (
+                                    filteredData.map((elem) => {
+                                        return <SwiperSlide> <ProductCard name={elem.name} price={elem.price.sale_price} featImg={elem.feat_img} urlToProd={elem.slug} /> </SwiperSlide>
+                                    })
+                                )
                     }
 
 

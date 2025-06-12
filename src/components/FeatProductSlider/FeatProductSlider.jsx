@@ -10,33 +10,24 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import ProductCard from '../ProductCard/ProductCard';
+import useFetch from '../../hooks/useFetch';
+import Loader from '../Loader/SingleRowSkeleton';
 
 const FeatProductSlider = ({
     title,
     urlText,
     urlVal,
-    isFeatCollecion = true
 }) => {
 
-    let [data, setProdData] = useState([])
-
     let productsAPI = import.meta.env.VITE_PRODUCT_API_KEY;
-    useEffect(() => {
-        (async () => {
-            let data = await fetch(productsAPI);
-            let res = await data.json();
-            setProdData(res)
-        })()
+    let useProdList = useFetch(productsAPI);
 
+    let loader = useProdList.loader;
+    let error = useProdList.error;
+    let prodData = useProdList.data;
 
-    }, [])
-
-    let filteredData = data.filter((elem) => {
-        return elem.featured_col
-    })
-
-    // console.log('Feat Col new Data', newData)
-
+    let filteredData = prodData.filter((elem) =>  elem.featured_col )
+    // console.log('filtered', filteredArr)
 
     return (
         <div className=' w-full py-[50px]' >
@@ -64,12 +55,18 @@ const FeatProductSlider = ({
                     loop={true}
 
                 >
-                    {
-                        filteredData.map((elem) => {
-                            return <SwiperSlide> <ProductCard name={elem.name} price={elem.price.sale_price} featImg={elem.feat_img} urlToProd={elem.slug} /> </SwiperSlide>
-                        })
-                    }
 
+                    {
+                        loader ?
+                            (<Loader />)
+                            : error ?
+                                (<p className="text-red-500">Something went wrong: {error.message}</p>) :
+                                (
+                                    filteredData.map((elem) => {
+                                        return <SwiperSlide> <ProductCard name={elem.name} price={elem.price.sale_price} featImg={elem.feat_img} urlToProd={elem.slug} /> </SwiperSlide>
+                                    })
+                                )
+                    }
 
                 </Swiper>
 

@@ -15,6 +15,11 @@
     animation: loading 1.5s infinite;
 }
 
+
+.loader.single_row_skeleton {
+    max-width: 350px;
+}
+
 @keyframes loading {
     to {
         background-position: 215px 0, 0 0, 15px 150px, 15px 180px;

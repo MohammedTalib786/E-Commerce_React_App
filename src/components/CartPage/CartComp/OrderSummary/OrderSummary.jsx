@@ -77,10 +77,10 @@ const OrderSummary = () => {
 
         if (shippingDetails.states === 'Maharashtra' || shippingDetails.states === '', shippingDetails.states === undefined) {
             const halfGst = (gstCalc / 2).toFixed(2);
-            text = `(includes <span className='  text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> CGST, ₹${halfGst} SGST)`;
+            text = `(includes <span class='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> CGST, <span class='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> SGST)`;
         }
 
-        else text = `(includes ₹${gstCalc.toFixed(2)} IGST)`;
+        else text = `(includes <span class='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${gstCalc.toFixed(2)}</span> IGST)`;
 
         // console.log('Setting gstText to:', text);
         setGstText(text);
@@ -120,7 +120,7 @@ const OrderSummary = () => {
                     {
                         town_city &&
                         <div className="shippingDetailsInfo py-[8px] flex flex-col gap-[6px] ">
-                            <p>Shipping Charges: &#8377;{shippingCharges}</p>
+                            <p>Flat Rate: &#8377;{shippingCharges}</p>
                             <p>
                                 Shipping to {town_city}, {pincode}, {states}
                                 {/* DEMO: Shipping to Mum, 70, Maha, */}
@@ -159,7 +159,7 @@ const OrderSummary = () => {
 
                 <Button
                     handlerClickBtnComp={handlerToCheckoutPage}
-                    text='Place Order'
+                    text='Proceed to Checkout'
                 />
 
                 {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ENDS Place Order Button */}
