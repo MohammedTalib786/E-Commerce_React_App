@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import statesJSON from '../../states_JSON/states.json'
-import Button from '../../Button';
+import Button from '../../FormComp/Button';
 import { useShippingDetails } from '../../../contexts/ShippingDetProvider';
+import InputBar from '../../FormComp/InputBar';
+import SelectDropdown from '../../FormComp/SelectDropdown';
 
 const ShippingForm = ({
     setIsVisible
@@ -22,7 +24,7 @@ const ShippingForm = ({
     // console.log('shippingDetails in ship form comp ', shippingDetails)
 
     const handlerDemo = () => {
-        console.log('Click Btn');
+        // console.log('Click Btn');
         setIsVisible(prev => !prev);
     }
 
@@ -33,10 +35,11 @@ const ShippingForm = ({
 
     // >>>>>>>>>>>>>>>>>>>>> Form Validation
     const handlerSubmitForm = () => {
-        console.log("Button CLicked");
+        // console.log("Button CLicked");
 
-        if (formData.town_cityInp === '') {
-            console.log('town city inp cant be empty!')
+        if (formData.town_cityInp === '' || !formData.town_cityInp) {
+            // console.log('town city inp cant be empty!')
+            // console.log('formData.town_cityInp', formData.town_cityInp)
             setErrorMsg({ ...errorMsg, townCity: true })
             setTimeout(() => {
                 setErrorMsg({ ...errorMsg, townCity: false })
@@ -44,7 +47,7 @@ const ShippingForm = ({
         }
 
         else if (!formData.pincodeInp || !regex.test(formData.pincodeInp)) {
-            console.log('Pincode Invalid!');
+            // console.log('Pincode Invalid!');
             setErrorMsg({ ...errorMsg, pincode: true })
             setTimeout(() => {
                 setErrorMsg({ ...errorMsg, pincode: false })
@@ -56,11 +59,11 @@ const ShippingForm = ({
             addShippingDetails(formData.town_cityInp, formData.pincodeInp, formData.stateInp);
             setIsVisible(prev => !prev);
             // setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: "" })
-            setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: formData.stateInp })
+            // setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: formData.stateInp })
         }
     }
 
-    console.log('Outside Scope', shippingDetails.states)
+    // console.log('Outside Scope', shippingDetails.states)
 
     useEffect(() => {
         setFormData({ stateInp: shippingDetails.states })
@@ -71,15 +74,10 @@ const ShippingForm = ({
             <div className=""  >
 
                 <div
-                    className="shippingFormCont flex flex-col gap-[18px] pt-[20px] "
-                >
+                    className="shippingFormCont flex flex-col gap-[18px] pt-[20px] " >
 
                     <div className="countryCont relative "  >
-                        <label htmlFor="country"> Country </label>
-                        <input
-                            type="text" readOnly name="" id="country" value="India"
-                            className=' w-full border border-[#737373] outline-0 px-[16px] py-[12px] text-[18px]/[26px] rounded-[6px]  '
-                            onClick={handlerCountryInp}
+                        <InputBar label_text="Country" html_for="country" id="country" read_only={true} type="text" value="India" onclick_func={handlerCountryInp}
                         />
                         {
                             countryMsg &&
@@ -90,28 +88,12 @@ const ShippingForm = ({
                     </div>
 
                     <div className="stateCont  relative "  >
-                        <label htmlFor="state"> State </label>
-                        <select
-                            name="" id="state"
-                            className=' w-full border border-[#737373] outline-0 px-[16px] py-[12px] text-[18px]/[26px] rounded-[6px]  '
-                            value={formData.stateInp}
-                            onChange={(e) => setFormData({ ...formData, stateInp: e.target.value })}
-                        >
-                            {
-                                statesJSON.map((elem) => {
-                                    // console.log('Main State', elem.name)
-                                    return <option key={elem.code} value={elem.name} >{elem.name}</option>
-                                })
-                            }
-                        </select>
+                        <SelectDropdown label_text="State" html_for="state" id="state" value={formData.stateInp} onchange_func={(e) => setFormData({ ...formData, stateInp: e.target.value })} options_arr={statesJSON}
+                        />
                     </div>
 
                     <div className="townCityCont relative "  >
-                        <label htmlFor="town-city"> Town/City </label>
-                        <input
-                            type="text" name="" id="town-city"
-                            className=' w-full border border-[#737373] outline-0 px-[16px] py-[12px] text-[18px]/[26px] rounded-[6px]  '
-                            onChange={(e) => setFormData({ ...formData, town_cityInp: e.target.value })}
+                        <InputBar label_text="Town/City" html_for="town-city" id="town-city" type="text" onChange_func={(e) => setFormData({ ...formData, town_cityInp: e.target.value })}
                         />
                         {
                             errorMsg.townCity &&
@@ -122,11 +104,7 @@ const ShippingForm = ({
                     </div>
 
                     <div className="pinCodeCont relative "  >
-                        <label htmlFor="pincode"> PinCode </label>
-                        <input
-                            type="number"
-                            className=' w-full border border-[#737373] outline-0 px-[16px] py-[12px] text-[18px]/[26px] rounded-[6px]  ' name="" id="pincode"
-                            onChange={(e) => setFormData({ ...formData, pincodeInp: Number(e.target.value) })}
+                        <InputBar label_text="PinCode" html_for="pincode" id="pincode" type="number" onChange_func={(e) => setFormData({ ...formData, pincodeInp: Number(e.target.value) })}
                         />
                         {
                             errorMsg.pincode &&

@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import SpinnerLoader from '../../components/Loader/SpinnerLoader';
 import useFetch from '../../hooks/useFetch';
-import Button from '../../components/Button';
+import Button from '../../components/FormComp/Button';
 import NumCounter from '../../components/NumCounter/NumCounter';
 import { IoShieldCheckmarkSharp } from "react-icons/io5";
 import { FaTruckFast } from "react-icons/fa6";

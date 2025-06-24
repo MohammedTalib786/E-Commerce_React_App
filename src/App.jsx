@@ -37,12 +37,11 @@ const App = () => {
     pincode: null,
     phone_number: null,
     email_address: ""
-
   })
   // console.log('shippingDetails Contxt', shippingDetails)
 
   const addShippingDetails = (town_city, pincode, states) => {
-    console.log('Adding Shipping Det');
+    // console.log('Adding Shipping Det');
     // console.log(theMessage)
     setShippingDetails({
       town_city: town_city,

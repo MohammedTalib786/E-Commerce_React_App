@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './error404Page.css'
-import Button from '../../components/Button'
+import Button from '../../components/FormComp/Button'
 import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
 

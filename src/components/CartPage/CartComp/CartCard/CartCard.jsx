@@ -71,12 +71,12 @@ const CartCard = ({
                     </div>
                 </div>
             </Link>
-
+                            
             <div className="qnty flex items-center h-fit p-[10px] relative ">
                 {/* >>>>>>>>>>>>>>>>>>>> Message */}
                 {
                     msg.maxItemMsg &&
-                    <p className='bg-[var(--primary-color)] text-white  absolute w-[220px] text-center top-[80px] left-[-30px] text-[17px]/[24px] px-[10px] py-[12px] rounded-[12px]  ' >
+                    <p className='bg-[var(--primary-color)] text-white absolute w-[220px] text-center top-[80px] left-[-30px] text-[17px]/[24px] px-[10px] py-[12px] rounded-[12px]  ' >
                         The maximum number of cart items is 10
                     </p>
                 }

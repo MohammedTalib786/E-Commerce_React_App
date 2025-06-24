@@ -5,7 +5,7 @@ import './orderSummary.css'
 
 import CartAccordian from '../OrderSummary/CartAccordian/CartAccordian'
 import { useShippingDetails } from '../../../../contexts/ShippingDetProvider';
-import Button from '../../../Button';
+import Button from '../../../FormComp/Button';
 import { useNavigate } from 'react-router-dom';
 
 const OrderSummary = () => {
@@ -24,8 +24,8 @@ const OrderSummary = () => {
 
     let [gstText, setGstText] = useState('')
 
-    console.log('shippingDetails in ordr Summ', shippingDetails)
-    console.log('shippingDetails State in ordr Summ', shippingDetails.states)
+    // console.log('shippingDetails in ordr Summ', shippingDetails)
+    // console.log('shippingDetails State in ordr Summ', shippingDetails.states)
 
     cartProducts.map(elem => cartItemSubTotal += (elem.price * elem.quantity))
 
