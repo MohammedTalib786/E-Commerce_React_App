@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import placeholderImg from '../../assets/placeholder_img.png'
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -65,7 +67,11 @@ const ProductSlider = ({
                                 (<p className="text-red-500">Something went wrong: {error.message}</p>) :
                                 (
                                     filteredData.map((elem) => {
-                                        return <SwiperSlide> <ProductCard name={elem.name} price={elem.price.sale_price} featImg={elem.feat_img} urlToProd={elem.slug} /> </SwiperSlide>
+                                        return <SwiperSlide> <ProductCard name={elem.name} price={elem.price.sale_price} 
+                                        // featImg={elem.feat_img}
+                                        featImg={placeholderImg}
+                                        
+                                        urlToProd={elem.slug} /> </SwiperSlide>
                                     })
                                 )
                     }

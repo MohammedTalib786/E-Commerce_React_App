@@ -4,15 +4,18 @@ import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import './layout.css'
 import ScrollToTop from './ScrollToTop/ScrollToTop'
+import NewsletterComp from './NewsletterComp/NewsletterComp'
+
 
 const Layout = () => {
     return (
         <>
             <Header />
-            <div className=' mt-[65px] ' >
+            <div className=' tab:mt-[60px] mt-[56px] ' >
                 <Outlet />
             </div>
             <ScrollToTop />
+            <NewsletterComp />
             <Footer />
         </>
 

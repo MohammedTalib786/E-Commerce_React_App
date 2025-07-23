@@ -1,14 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
+
+
+@theme {
+    --font-inter: "Inter", sans-serif;
+    --color-prim-blue: #0D6EFD;
+    --color-get-grey: #8B96A5;
+    /* --breakpoint-gt-mob: 600px; */
+    /* initial value works till 767 */
+
+    /* tab from 768 to 1023 */
+    --breakpoint-tab: 768px;
+
+    /* gt-tab min 1024 no max limit  */
+    --breakpoint-gt-tab: 1024px;
+}
+
 :root {
-    --primary-color: #72aec8;
+    --heading-font: Inter;
+    --body-font: Inter;
+    --primary-color: #0D6EFD;
     --black-color: black;
     --white-color: white;
 }
 
 
 html {
-    font-family: Poppins;
+    font-family: Inter;
     scroll-behavior: smooth;
 }
 
@@ -24,6 +43,28 @@ html {
     padding: 0 50px;
 }
 
+
+@media (min-width: 1200px) {
+    .difLocation_icon_footer {
+        font-size: 38px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .difLocation_icon_footer {
+        font-size: 60px;
+    }
+}
+
+@media (max-width: 767px) {
+    #newsletter_submit_btn {
+        width: 100%;
+    }
+}
+
+/* 1024 - 60
+1280 - 38 */
+
 /* 
 @media (min-width: 1441px) {
     .head_foot_cont {
@@ -33,4 +74,3 @@ html {
 /* footer.head_foot_cont_full {
     padding: 30px 50px;
 } */
- 

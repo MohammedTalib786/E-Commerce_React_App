@@ -15,6 +15,7 @@ dist-ssr
 .env
 text-notes/
 resource.txt
+updates.txt
 
 # Editor directories and files
 .vscode/*

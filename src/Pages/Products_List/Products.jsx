@@ -3,6 +3,7 @@ import ProductCard from '../../components/ProductCard/ProductCard'
 import '../../components/layout.css'
 import Loader from '../../components/Loader/SkeletonLoader'
 import useFetch from '../../hooks/useFetch'
+import placeholderImg from '../../assets/placeholder_img.png'
 
 
 
@@ -45,7 +46,8 @@ const Products = () => {
                                         name={elem.name}
                                         slug={elem.slug}
                                         price={elem.price.sale_price}
-                                        featImg={elem.feat_img}
+                                        // featImg={elem.feat_img}
+                                        featImg={placeholderImg}
                                     />
                                     )
                                 )

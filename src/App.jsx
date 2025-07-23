@@ -14,6 +14,8 @@ import TestPage from './Pages/Test/TestPage';
 import Contact from './Pages/Contact/Contact';
 import CheckoutPage from './Pages/Checkout/CheckoutPage';
 
+
+
 const App = () => {
   let [cartProducts, setCartProducts] = useState([
     // {
@@ -102,6 +104,7 @@ const App = () => {
     setCartProducts((prevItem) => prevItem.filter((elem) => elem.id !== id))
     // console.log('Remove From CaRT')
   }
+
 
   return (
     <>

@@ -6,3 +6,7 @@ a.active {
 a.pending {
     color: #0f172b;
 }
+
+/* .bottom_header {
+    transition: .25s all ease-in-out;
+} */

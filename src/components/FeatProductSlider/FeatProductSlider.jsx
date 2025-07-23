@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import '../ProductSlider/productSlider.css'
 
+import placeholderImg from '../../assets/placeholder_img.png'
+
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -63,7 +65,10 @@ const FeatProductSlider = ({
                                 (<p className="text-red-500">Something went wrong: {error.message}</p>) :
                                 (
                                     filteredData.map((elem) => {
-                                        return <SwiperSlide> <ProductCard name={elem.name} price={elem.price.sale_price} featImg={elem.feat_img} urlToProd={elem.slug} /> </SwiperSlide>
+                                        return <SwiperSlide> <ProductCard name={elem.name} price={elem.price.sale_price} 
+                                        // featImg={elem.feat_img}
+                                        featImg={placeholderImg}
+                                        urlToProd={elem.slug} /> </SwiperSlide>
                                     })
                                 )
                     }
