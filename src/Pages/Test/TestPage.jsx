@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import TestComp from './TestComp';
 
 const TestPage = () => {
 
@@ -18,6 +19,8 @@ const TestPage = () => {
                     <p onClick={handleClick}>Click to Change to Button</p>
                 )}
             </div>
+
+            <TestComp additionalClass="class3 class4" />
 
         </div>
     )

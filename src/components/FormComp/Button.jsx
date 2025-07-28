@@ -11,13 +11,14 @@ const Button = ({
     handlerClickBtnComp,
     type,
     id,
+    additionalClass,
 }) => {
     return (
         <button
             onClick={handlerClickBtnComp}
             type={type}
             id={id}
-            className={` ${btnWidth}   max-w-100 transition-all flex justify-center items-center p-[12px 25px] px-[16px] py-[8px] border ${borderClr} ${bgClr} ${textClr}  cursor-pointer rounded-[6px]  `} >
+            className={` ${btnWidth} max-w-100 transition-all flex justify-center items-center px-[16px] py-[8px] border ${borderClr} ${bgClr} ${textClr}  cursor-pointer rounded-[6px] ${additionalClass} `} >
             {text}
         </button>
     )

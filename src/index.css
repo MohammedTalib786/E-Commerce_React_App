@@ -7,6 +7,8 @@
     --font-inter: "Inter", sans-serif;
     --color-prim-blue: #0D6EFD;
     --color-get-grey: #8B96A5;
+    --color-black-1c: #1C1C1C;
+    
     /* --breakpoint-gt-mob: 600px; */
     /* initial value works till 767 */
 
@@ -74,3 +76,29 @@ html {
 /* footer.head_foot_cont_full {
     padding: 30px 50px;
 } */
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>> LENIS Rec CSS */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>> ENDS LENIS Rec CSS */
+

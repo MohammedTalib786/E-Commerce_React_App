@@ -13,7 +13,8 @@ import ProductDetail from './Pages/Product_Detail/ProductDetail';
 import TestPage from './Pages/Test/TestPage';
 import Contact from './Pages/Contact/Contact';
 import CheckoutPage from './Pages/Checkout/CheckoutPage';
-
+import SearchListing from './Pages/SearchListingPage/SearchListing';
+import Lenis from 'lenis';
 
 
 const App = () => {
@@ -106,6 +107,39 @@ const App = () => {
   }
 
 
+
+
+  // >>>>>>>>>>>>>>>> Initialize Lenis (Smooth Scroll Library)
+
+  useEffect(() => {
+    // Initialize Lenis
+    // const lenis = new Lenis();
+    const lenis = new Lenis({
+      // lerp: 0.1,
+      duration: 2.5,
+      autoRaf: true,
+      anchors: true,
+      // infinite: true,
+    });
+
+
+    // Listen for the scroll event and log the event data
+    lenis.on('scroll', (e) => {
+      // console.log('Initialized Lenis!');
+      // console.log(e);
+    });
+
+    // Use requestAnimationFrame to continuously update the scroll
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // >>>>>>>>>>>>>>>>>>> ENDS Initialize LENIS
+  })
+
   return (
     <>
 
@@ -133,9 +167,13 @@ const App = () => {
 
               <Route path='/contact' element={<Contact />} />
 
+              <Route path='/search-listing' element={<SearchListing />} />
+
               <Route path='*' element={<Error404Page />} />
 
               <Route path='/test' element={<TestPage />} />
+
+
 
             </Route>
 
