@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 
 import Slides from './Slides';
 
+import placeholderImg from '../../../assets/placeholder_img.png'
 
 
 const SpotlightSlider = () => {
@@ -18,11 +19,11 @@ const SpotlightSlider = () => {
     let slides = [
         {
             title: "YOUR PRODUCTS <br/>ARE GREAT.",
-            source: "https://www.tintaccessories.com/wp-content/uploads/2024/01/Pueblo-Black-JPEG-1024x1024.jpg"
+            source: placeholderImg
         },
         {
             title: "TECHNOLOGY <br/>HACK YOU WON'T <br/>GET.",
-            source: "https://www.tintaccessories.com/wp-content/uploads/2024/01/69-1024x1024.jpg"
+            source: placeholderImg
         },
     ]
 

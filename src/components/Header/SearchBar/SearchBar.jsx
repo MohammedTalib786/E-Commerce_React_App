@@ -32,7 +32,7 @@ const SearchBar = () => {
                 />
                 <Button
                     type="submit"
-                    additionalClass="rounded-bl-[0] rounded-tl-[0] py-[10px] px-[20px] "
+                    additionalclassName="rounded-bl-[0] rounded-tl-[0] py-[10px] px-[20px] "
                     btnWidth="w-fit"
                     text='Search'
                 />

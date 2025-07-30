@@ -3,12 +3,15 @@ import './cartCard.css'
 import { useCart } from '../../../../contexts/ProdProvider'
 import { Link } from 'react-router-dom';
 
+import placeholderImg from '../../../../assets/placeholder_img.png'
+
 const CartCard = ({
     id,
     prodName = "Item 1",
     price,
     slug,
-    feat_img = "https://www.tintaccessories.com/wp-content/uploads/2023/11/Shadow-JPEG-1024x1024.jpg"
+    // feat_img = "https://www.tintaccessories.com/wp-content/uploads/2023/11/Shadow-JPEG-1024x1024.jpg"
+    feat_img = placeholderImg
 }) => {
 
     let { cartProducts, changeQuantityFunc, removeFromCartFunc } = useCart();

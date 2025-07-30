@@ -1,43 +1,52 @@
 import React, { useRef } from 'react'
 
+import { motion, useInView } from "framer-motion";
+import { useInViewMotion } from '../../hooks/useInViewMotion'; // update this path
+import { useInViewMotionFades } from '../../hooks/useInViewMotionFades'; // update this path
+
 import about from '../../assets/about-page/about-spotlight.webp'
 import purpose from '../../assets/about-page/purpose.webp'
 import mission from '../../assets/about-page/mission.webp'
 import paraImg from '../../assets/about-page/business-hands-joined-together-teamwork 1.png'
 
 import NumberCounter from '../../components/AnimatedNumber/NumberCounter'
-
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
+
 import './about-us.css'
 
-import { motion, useInView } from "framer-motion";
 
 
 const About = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  const hero = useInViewMotionFades();
+  const content = useInViewMotion();
+  const counters = useInViewMotion();
+  const missionSectionOne = useInViewMotion();
+  const missionSectionTwo = useInViewMotion();
+
+  // const ref = useRef(null);
+  // const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
 
     <div
       className="lg:w-[100%] flex flex-col items-center"
 
-
-      
-
     >
 
 
       <motion.div
-      
-      className=" about_spotlight_bg bg-center bg-cover bg-no-repeat w-full h-[80vh] flex" style={{ backgroundImage: `url(${about})` }} 
 
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
-      transition={{ duration: 0.8, ease: "easeOut" }}
+
+        ref={hero.ref}
+        initial={{ opacity: 0 }}
+        animate={hero.isInView ? { opacity: 1 } : {}} // Only animate if in view
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className=" about_spotlight_bg bg-center bg-cover bg-no-repeat w-full h-[80vh] flex"
+        style={{ backgroundImage: `url(${about})` }}
       // style={{ marginBottom: "100vh", padding: "2rem", background: "#eee" }}
       >
+
         <div className="container_layout m-auto mt-[50px]">
           <BreadCrumbs />
           <h1 className="font-[inter] font-bold text-[60px] text-white mt-[20px] relative z-10 " >About Us</h1>
@@ -45,12 +54,12 @@ const About = () => {
 
       </motion.div>
 
-      <motion.div className="container_layout" 
-
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      <motion.div
+        ref={content.ref}
+        initial={{ opacity: 0, y: 50 }}
+        animate={content.isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="container_layout"
       // style={{ marginBottom: "100vh", padding: "2rem", background: "#eee" }}
       >
         <div className="lg:py-[100px] py-[50px] flex  flex-col-reverse gap-10 lg:flex-row">
@@ -68,12 +77,11 @@ const About = () => {
 
       {/* counter */}
       <motion.div
-      className="w-[100%] flex flex-row flex-wrap border-1 border-[#e5e7eb]"
-      
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
-      transition={{ duration: 0.8, ease: "easeOut" }}
+        ref={counters.ref}
+        initial={{ opacity: 0, y: 50 }}
+        animate={counters.isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-[100%] flex flex-row flex-wrap border-1 border-[#e5e7eb]"
       // style={{ marginBottom: "100vh", padding: "2rem", background: "#eee" }}
       >
         <NumberCounter width={'w-[50%] lg:w-[25%]'} title={"clients"} number={100} />
@@ -83,21 +91,31 @@ const About = () => {
       </motion.div>
 
 
-      <motion.div 
-      className="main-cont w-full"
-      
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      // style={{ marginBottom: "100vh", padding: "2rem", background: "#eee" }}
+      <div
+
+        className="main-cont w-full"
       >
         <div className="inner">
-          <div className="upperDiv lg:py-[150px] py-[75px] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center m-auto" style={{ backgroundImage: `url(${purpose})` }}>
+
+          <motion.div
+            ref={missionSectionOne.ref}
+            initial={{ opacity: 0, y: 50 }}
+            animate={missionSectionOne.isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="upperDiv lg:py-[150px] py-[75px] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center m-auto"
+            style={{ backgroundImage: `url(${purpose})` }}
+          >
             <h3 className='font-inter font-bold lg:text-[60px] md:text-[50px] text-[30px] text-[#fff]'>Our Purpose</h3>
             <p className='font-inter font-normal text-[18px] text-center text-[#fff]'>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-          <div className="lowerDiv flex flex-row" >
+          </motion.div>
+
+          <motion.div
+            ref={missionSectionTwo.ref}
+            initial={{ opacity: 0, y: 50 }}
+            animate={missionSectionTwo.isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lowerDiv flex flex-row"
+          >
             <div className="lowerFirstDiv bg-no-repeat bg-cover bg-center px-[20px]  w-[50%] flex flex-col justify-center items-center " style={{ backgroundImage: `url(${mission})` }}>
               <h3 className='font-inter font-bold lg:text-[60px] md:text-[50px] text-[30px] text-[#313D47]'> Our Mission</h3>
               <p className='font-inter font-medium text-[18px] text-center text-[#313D47]'>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -112,9 +130,9 @@ const About = () => {
               <h4 className='font-inter font-bold text-[24px] text-[#78b5ad] mt-[50px]' >Excellence</h4>
               <p className='font-inter font-medium text-[18px] text-[#d9d9d9]'>Lorem, ipsum dolor sit amet</p>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
 
 
 

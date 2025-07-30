@@ -12,6 +12,8 @@ import 'swiper/css/pagination';
 import Slides from './Slides';
 // import 'swiper/css/scrollbar';
 
+import placeholderImg from '../../assets/placeholder_img.png'
+
 const Slider = () => {
     return (
         <Swiper
@@ -24,11 +26,11 @@ const Slider = () => {
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}
         >
-            <SwiperSlide> <Slides source="https://www.tintaccessories.com/wp-content/uploads/2024/01/MagPop-JPEG-1024x1024.jpg" /> </SwiperSlide>
-            <SwiperSlide> <Slides source="https://www.tintaccessories.com/wp-content/uploads/2023/09/MagPop-3-1024x1005.webp" /> </SwiperSlide>
-            <SwiperSlide> <Slides source="https://www.tintaccessories.com/wp-content/uploads/2023/09/MagPop-4-1024x1005.webp" /> </SwiperSlide>
-            <SwiperSlide> <Slides source="https://www.tintaccessories.com/wp-content/uploads/2023/09/MagPop-5-1024x1005.webp" /> </SwiperSlide>
-            <SwiperSlide> <Slides source="https://www.tintaccessories.com/wp-content/uploads/2023/09/MagPop-6-1024x1005.webp" /> </SwiperSlide>
+            <SwiperSlide> <Slides source={placeholderImg} /> </SwiperSlide>
+            <SwiperSlide> <Slides source={placeholderImg} /> </SwiperSlide>
+            <SwiperSlide> <Slides source={placeholderImg} /> </SwiperSlide>
+            <SwiperSlide> <Slides source={placeholderImg} /> </SwiperSlide>
+            <SwiperSlide> <Slides source={placeholderImg} /> </SwiperSlide>
 
         </Swiper>
     )

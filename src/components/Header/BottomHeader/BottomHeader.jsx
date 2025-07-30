@@ -17,7 +17,7 @@ const BottomHeader = () => {
     const { scrollY } = useScroll();
     let [navTopVal, setNavTopVal] = useState('90px')
 
-    useMotionValueEvent(scrollY, 'change', (event) => event > 10 ? setNavTopVal('0px') : setNavTopVal('90px'))
+    useMotionValueEvent(scrollY, 'change', (event) => event > 25 ? setNavTopVal('0px') : setNavTopVal('90px'))
 
     // useMotionValueEvent(scrollY, 'change', (event) => {
 

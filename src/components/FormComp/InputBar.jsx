@@ -16,14 +16,14 @@ const InputBar = ({
 }) => {
     return (
         <>
-            {/* <label htmlFor="country"> Country </label>
+            {/* <label htmlhtmlFor="country"> Country </label>
             <input
                 type="text" readOnly name="" id="country" value="India"
                 className=' w-full border border-[#737373] outline-0 px-[16px] py-[12px] text-[18px]/[26px] rounded-[6px]  '
                 onClick={handlerCountryInp}
             /> */}
 
-            <label htmlFor={html_for} > {label_text} </label>
+            <label htmlhtmlFor={html_for} > {label_text} </label>
             <input
                 type={type} readOnly={read_only} name={name} id={id} value={value}
                 className={class_name}

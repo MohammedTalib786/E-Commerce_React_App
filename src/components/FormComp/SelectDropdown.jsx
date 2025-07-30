@@ -10,7 +10,7 @@ const SelectDropdown = ({
 }) => {
   return (
     <>
-      <label htmlFor={html_for}> {label_text} </label>
+      <label htmlhtmlFor={html_for}> {label_text} </label>
       <select
         name="" id={id}
         className=' w-full border border-[#737373] outline-0 px-[16px] py-[12px] text-[18px]/[26px] rounded-[6px]  '

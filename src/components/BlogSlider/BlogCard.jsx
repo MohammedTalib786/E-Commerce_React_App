@@ -1,5 +1,6 @@
 import React from 'react'
 
+import placeholderImg from '../../assets/placeholder_img.png'
 
 const BlogCard = () => {
     return (
@@ -7,7 +8,8 @@ const BlogCard = () => {
         <div className="blog_card relative flex flex-col gap-[12px] pb-[20px]  cursor-pointer  " >
 
             <img
-                src="https://www.tintaccessories.com/wp-content/uploads/2024/01/MagPop-JPEG-1024x1024.jpg"
+                // src="https://www.tintaccessories.com/wp-content/uploads/2024/01/MagPop-JPEG-1024x1024.jpg"
+                src={placeholderImg}
                 alt="prod-img"
                 className=' h-[260px] object-cover '
             />

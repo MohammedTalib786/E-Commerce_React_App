@@ -77,10 +77,10 @@ const OrderSummary = () => {
 
         if (shippingDetails.states === 'Maharashtra' || shippingDetails.states === '', shippingDetails.states === undefined) {
             const halfGst = (gstCalc / 2).toFixed(2);
-            text = `(includes <span class='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> CGST, <span class='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> SGST)`;
+            text = `(includes <span className='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> CGST, <span className='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> SGST)`;
         }
 
-        else text = `(includes <span class='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${gstCalc.toFixed(2)}</span> IGST)`;
+        else text = `(includes <span className='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${gstCalc.toFixed(2)}</span> IGST)`;
 
         // console.log('Setting gstText to:', text);
         setGstText(text);

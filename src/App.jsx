@@ -114,12 +114,16 @@ const App = () => {
   useEffect(() => {
     // Initialize Lenis
     // const lenis = new Lenis();
+
     const lenis = new Lenis({
-      // lerp: 0.1,
-      duration: 2.5,
+      lerp: 0.1,
+      smooth: true,
+      smoothTouch: true,
+      duration: 2,
       autoRaf: true,
       anchors: true,
       // infinite: true,
+      // easing: () => (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
 

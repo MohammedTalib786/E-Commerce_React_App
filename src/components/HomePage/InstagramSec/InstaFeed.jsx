@@ -2,6 +2,8 @@ import React from 'react'
 import { FaInstagram } from "react-icons/fa";
 import './instaFeed.css'
 
+import placeholderImg from '../../../assets/placeholder_img.png'
+
 const InstaFeed = () => {
     return (
 
@@ -13,7 +15,7 @@ const InstaFeed = () => {
 
                 <div className="insta_box w-full cursor-pointer relative ">
                     <img
-                        src="https://www.tintaccessories.com/wp-content/uploads/2024/01/ARMOUR-Sapphire-Blue-JPEG-1024x1024.jpg"
+                        src={placeholderImg}
                         className='h-[320px] object-cover w-full '
                     />
                     <FaInstagram
@@ -23,7 +25,7 @@ const InstaFeed = () => {
 
                 <div className="insta_box w-full cursor-pointer relative ">
                     <img
-                        src="https://www.tintaccessories.com/wp-content/uploads/2024/01/ARMOUR-Sapphire-Blue-JPEG-1024x1024.jpg"
+                        src={placeholderImg}
                         className='h-[320px] object-cover w-full '
                     />
                     <FaInstagram
@@ -33,7 +35,7 @@ const InstaFeed = () => {
 
                 <div className="insta_box w-full cursor-pointer relative ">
                     <img
-                        src="https://www.tintaccessories.com/wp-content/uploads/2024/01/ARMOUR-Sapphire-Blue-JPEG-1024x1024.jpg"
+                        src={placeholderImg}
                         className='h-[320px] object-cover w-full '
                     />
                     <FaInstagram
@@ -43,7 +45,7 @@ const InstaFeed = () => {
 
                 <div className="insta_box w-full cursor-pointer relative ">
                     <img
-                        src="https://www.tintaccessories.com/wp-content/uploads/2024/01/ARMOUR-Sapphire-Blue-JPEG-1024x1024.jpg"
+                        src={placeholderImg}
                         className='h-[320px] object-cover w-full '
                     />
                     <FaInstagram
@@ -53,15 +55,13 @@ const InstaFeed = () => {
 
                 <div className="insta_box w-full cursor-pointer relative ">
                     <img
-                        src="https://www.tintaccessories.com/wp-content/uploads/2024/01/ARMOUR-Sapphire-Blue-JPEG-1024x1024.jpg"
+                        src={placeholderImg}
                         className='h-[320px] object-cover w-full '
                     />
                     <FaInstagram
                         className=' icon_insta text-[65px] text-white mx-auto  '
                     />
                 </div>
-
-
 
             </div>
         </div>

@@ -3,14 +3,15 @@ import './productCard.css'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../../contexts/ProdProvider'
-
+import placeholderImg from '../../assets/placeholder_img.png'
 
 const ProductCard = ({
     id,
     name = "Product Name",
     price = 500,
     slug,
-    featImg = "https://www.tintaccessories.com/wp-content/uploads/2024/01/MagPop-JPEG-1024x1024.jpg",
+    // featImg = "https://www.tintaccessories.com/wp-content/uploads/2024/01/MagPop-JPEG-1024x1024.jpg",
+    featImg = placeholderImg,
     boxWidth = "w-full",
     urlToProd
 }) => {

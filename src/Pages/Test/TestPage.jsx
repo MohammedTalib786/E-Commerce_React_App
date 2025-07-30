@@ -20,7 +20,7 @@ const TestPage = () => {
                 )}
             </div>
 
-            <TestComp additionalClass="class3 class4" />
+            <TestComp additionalclassName="class3 class4" />
 
         </div>
     )

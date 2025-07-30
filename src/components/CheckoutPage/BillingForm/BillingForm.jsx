@@ -92,7 +92,7 @@ const BillingForm = ({
 
                     <div className="nameCont relative flex gap-[22px] "  >
                         <div className="">
-                            <InputBar label_text="First Name" type="text" html_for="first_name" id="first_name"
+                            <InputBar label_text="First Name" type="text" html_htmlFor="first_name" id="first_name"
                                 onChange_func={(e) => setFormData({ ...formData, first_name: e.target.value })}
                             />
                             {
@@ -106,7 +106,7 @@ const BillingForm = ({
 
 
                         <div className="">
-                            <InputBar label_text="Last Name" type="text" html_for="last_name" id="last_name"
+                            <InputBar label_text="Last Name" type="text" html_htmlFor="last_name" id="last_name"
                                 onChange_func={(e) => setFormData({ ...formData, last_name: e.target.value })}
                             />
                         </div>
@@ -115,7 +115,7 @@ const BillingForm = ({
 
 
                     <div className="emailCont relative "  >
-                        <InputBar label_text="Email" type="email" html_for="email_address" id="email_address"
+                        <InputBar label_text="Email" type="email" html_htmlFor="email_address" id="email_address"
                             onChange_func={(e) => setFormData({ ...formData, email_address: e.target.value })}
                         />
 
@@ -130,7 +130,7 @@ const BillingForm = ({
 
 
                     <div className="phoneCont relative "  >
-                        <InputBar label_text="Phone" type="number" html_for="phone_number" id="phone_number"
+                        <InputBar label_text="Phone" type="number" html_htmlFor="phone_number" id="phone_number"
                             onChange_func={(e) => setFormData({ ...formData, phone_number: e.target.value })}
                         />
 
@@ -145,7 +145,7 @@ const BillingForm = ({
 
 
                     <div className="countryCont relative "  >
-                        <label htmlFor="country"> Country </label>
+                        <label htmlhtmlFor="country"> Country </label>
                         <input
                             type="text" readOnly name="" id="country" value="India"
                             className=' w-full border-[0]  outline-0 px-[0] pt-[7px] pb-[0] text-[18px]/[26px] rounded-[6px] font-[600] '
@@ -156,7 +156,7 @@ const BillingForm = ({
 
                     <div className="streetAddress relative flex flex-col gap-[22px] "  >
                         <div className="">
-                            <InputBar label_text="Street Address" type="text" html_for="streetAddress_1" id="streetAddress_1"
+                            <InputBar label_text="Street Address" type="text" html_htmlFor="streetAddress_1" id="streetAddress_1"
                                 onChange_func={(e) => setFormData({ ...formData, street_address: e.target.value })}
                             />
 
@@ -172,7 +172,7 @@ const BillingForm = ({
 
 
                     <div className="townCityCont relative "  >
-                        <InputBar label_text="Town/City" type="text" html_for="town-city" id="town-city"
+                        <InputBar label_text="Town/City" type="text" html_htmlFor="town-city" id="town-city"
                             onChange_func={(e) => setFormData({ ...formData, town_cityInp: e.target.value })}
                         />
 
@@ -187,13 +187,13 @@ const BillingForm = ({
 
 
                     <div className="stateCont  relative "  >
-                        <SelectDropdown label_text="State" html_for="state" id="state" value={formData.stateInp} onchange_func={(e) => setFormData({ ...formData, stateInp: e.target.value })} options_arr={statesJSON}
+                        <SelectDropdown label_text="State" html_htmlFor="state" id="state" value={formData.stateInp} onchange_func={(e) => setFormData({ ...formData, stateInp: e.target.value })} options_arr={statesJSON}
                         />
                     </div>
 
 
                     <div className="pinCodeCont relative "  >
-                        <InputBar label_text="PinCode" type="number" html_for="pincode" id="pincode"
+                        <InputBar label_text="PinCode" type="number" html_htmlFor="pincode" id="pincode"
                             onChange_func={(e) => setFormData({ ...formData, pincodeInp: Number(e.target.value) })}
                         />
 
