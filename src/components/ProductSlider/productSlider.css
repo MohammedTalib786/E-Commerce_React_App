@@ -1,4 +1,26 @@
-.prodSlider .swiper-pagination {
+/* .prodSlider .swiper-pagination {
     height: 70px;
     bottom: -52px;
+} */
+
+.swiper {
+    height: 580px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 390px) {
+    .swiper {
+        height: 590px;
+    }
+}
+
+@media only screen and (min-width: 391px) and (max-width: 480px) {
+    .swiper {
+        height: 650px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+    .swiper {
+        height: 500px;
+    }
 }

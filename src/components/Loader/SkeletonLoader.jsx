@@ -8,7 +8,7 @@ const Loader = () => {
             {/* >>>>>>>>>>>>>> In Cont */}
             <div className=" w-full flex justify-center items-center gap-[20px]  " >
 
-                <span className="loader  " ></span>
+                {/* <span className="loader  " ></span> */}
                 <span className="loader  " ></span>
                 <span className="loader  " ></span>
                 <span className="loader  " ></span>
@@ -18,7 +18,7 @@ const Loader = () => {
             {/* >>>>>>>>>>>>>> In Cont */}
             <div className=" w-full flex justify-center items-center gap-[20px] mt-[30px]  "  >
 
-                <span className="loader  " ></span>
+                {/* <span className="loader  " ></span> */}
                 <span className="loader  " ></span>
                 <span className="loader  " ></span>
                 <span className="loader  " ></span>

@@ -5,16 +5,17 @@
 }
 
 .add_to_cart_btn {
-    opacity: 0;
-    pointer-events: none;
-    top: 310px;
+    opacity: 1;
+    pointer-events: all;
+    /* top: 310px; */
+    top: 290px;
 }
 
-.prod_card:hover .add_to_cart_btn {
+/* .prod_card:hover .add_to_cart_btn {
     opacity: 1;
     pointer-events: all;
     top: 290px;
-}
+} */
 
 /* add_to_cart_btn */
 

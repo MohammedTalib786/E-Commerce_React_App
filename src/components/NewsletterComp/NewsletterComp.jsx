@@ -5,14 +5,19 @@ import Button from '../FormComp/Button'
 import { FaRegEnvelope } from "react-icons/fa";
 
 import emailjs from '@emailjs/browser';
+import InputBar from '../FormComp/InputBar';
 
 const NewsletterComp = () => {
 
-
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let [emailValue, setEmailValue] = useState('')
 
     let formRef = useRef();
 
+    let [errorMsg, setErrorMsg] = useState({
+        error_email: false,
+        success_form: false,
+    })
 
     const handlerSubmitForm = async (e) => {
         let to_email = formRef.current.from_email.value
@@ -26,25 +31,42 @@ const NewsletterComp = () => {
 
 
         try {
-            // Receiver - Admin
-            await emailjs
-                .sendForm(import.meta.env.VITE_EJS_SERVICE_ID, import.meta.env.VITE_EJS_TEMPLATE_RECEIVER_ID, formRef.current, {
-                    publicKey: import.meta.env.VITE_EJS_PUBLIC_KEY,
-                })
 
-            // Sender - User
-            await emailjs
-                .send(import.meta.env.VITE_EJS_SERVICE_ID, import.meta.env.VITE_EJS_TEMPLATE_SENDER_ID, { to_email: to_email }, {
-                    publicKey: import.meta.env.VITE_EJS_PUBLIC_KEY,
-                })
+            if (to_email.length <= 0) {
+                setErrorMsg({ success_form: false, error_email: true })
+                setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 12000)
+                // console.log('email field is empty!')
+            }
 
-            console.log('Success');
-            setEmailValue('');
-            
+            else if (!emailRegex.test(to_email)) {
+                setErrorMsg({ success_form: false, error_email: true })
+                setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 12000)
+                // console.log('email field is incorrect!')
+            }
+
+            else {
+                setErrorMsg({ error_email: false, success_form: true })
+                setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 2000)
+
+                // Receiver - Admin
+                await emailjs
+                    .sendForm(import.meta.env.VITE_EJS_SERVICE_ID, import.meta.env.VITE_EJS_TEMPLATE_RECEIVER_ID, formRef.current, {
+                        publicKey: import.meta.env.VITE_EJS_PUBLIC_KEY,
+                    })
+
+                // Sender - User
+                await emailjs
+                    .send(import.meta.env.VITE_EJS_SERVICE_ID, import.meta.env.VITE_EJS_TEMPLATE_SENDER_ID, { to_email: to_email }, {
+                        publicKey: import.meta.env.VITE_EJS_PUBLIC_KEY,
+                    })
+
+                console.log('Success Newsletter Form Submitted!');
+                setEmailValue('');
+            }
         }
         catch (err) {
-            console.log('an Error Occured', err)
-            setEmailValue('')
+            console.log('an Error Occured', err);
+            setEmailValue('');
         }
 
     }
@@ -56,17 +78,32 @@ const NewsletterComp = () => {
             <p className='text-[#606060] font-[400] text-[16px]/[26px] pb-[20px] text-center ' >Get daily news on upcoming offers from many suppliers all over the world</p>
 
             <form action=""
-                ref={formRef} onSubmit={handlerSubmitForm} 
-                className=' w-full relative flex gap-[8px] tab:flex-row flex-col justify-center items-center '
+                ref={formRef} onSubmit={handlerSubmitForm}
+                className=' w-full relative flex gap-[8px] tab:flex-row flex-col justify-center items-start '
             >
                 {/* <img src={emailIcon} alt="" className=' w-[24px] absolute top-[13px] left-[8px] ' /> */}
                 <div className="input_text relative tab:w-auto w-full " >
 
                     <FaRegEnvelope className=' text-[#8B96A5] text-[16px] absolute top-[13px] left-[14px] ' />
-                    <input type="email" placeholder='Email' name='from_email' value={emailValue} onChange={(e) => setEmailValue(e.target.value) }
-                        className=' text-[#8B96A5]  tab:min-w-[300px] min-w-full  border-[#DEE2E7] border-1 bg-white placeholder:text-[#8B96A5] py-[8px] pr-[20px] pl-[40px] rounded-[6px] outline-0 '
-                    />
+                    <div className="flex flex-col  ">
+
+
+                        <input type="email" placeholder='Email' name='from_email' value={emailValue} onChange={(e) => setEmailValue(e.target.value)}
+                            className=' text-black-1c  tab:min-w-[300px] min-w-full  border-[#DEE2E7] border-1 bg-white placeholder:text-[#8B96A5] py-[8px] pr-[20px] pl-[40px] rounded-[6px] outline-0 '
+                        />
+
+                        {
+                            errorMsg.error_email && <span className=' text-[#c31717]  w-full px-[6px] py-[4px] text-[15px]/[21px] font-medium absolute bottom-[-30px] ' >The Field is Incorrect!</span>
+                        }
+                        {
+                            errorMsg.success_form && <span className=' text-[#00a90e]  w-full px-[6px] py-[4px] text-[15px]/[21px] font-medium absolute bottom-[-30px] ' >You've successfully subscribed!</span>
+                        }
+                        {/* <span className=' text-[#c31717]  w-full px-[6px] py-[4px] text-[15px]/[21px] font-medium absolute bottom-[-30px] ' >The Field is Incorrect!</span> */}
+                        {/* <span className=' text-[#00a90e]  w-full px-[6px] py-[4px] text-[15px]/[21px] font-medium absolute bottom-[-30px] ' >You've successfully subscribed!</span> */}
+
+                    </div>
                 </div>
+
 
                 <Button type='submit' id="newsletter_submit_btn" text='Subscribe' btnWidth='fit' />
 

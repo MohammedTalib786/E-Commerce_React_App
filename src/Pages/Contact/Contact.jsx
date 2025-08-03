@@ -6,12 +6,19 @@ import { MdEmail } from "react-icons/md";
 
 import emailjs from '@emailjs/browser';
 import Button from '../../components/FormComp/Button';
+import InputBar from '../../components/FormComp/InputBar';
 
 
 
 const Contact = () => {
 
   let formRef = useRef();
+  let [errorMsg, setErrorMsg] = useState({
+    name: false,
+    nameStyle: "",
+    email: false,
+    emailStyle: "",
+  })
   let [succesMsg, setSuccessMsg] = useState({})
   let [toggleMsg, setToggleMsg] = useState(false)
 
@@ -21,62 +28,83 @@ const Contact = () => {
     message: '',
   })
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const handlerSubmitForm = async (e) => {
     e.preventDefault();
-    console.log('Form Submitting!');
-    setToggleMsg(true)
-    setSuccessMsg({
-      message: "Form Submitting...",
-      additionalClass: "bg-[#dfb450]"
-    })
-
 
     let from_name = formRef.current.from_name.value
     let to_email = formRef.current.from_email.value
     let message = formRef.current.message.value
 
+    // console.log('from_name', from_name)
+    // console.log('from_name', from_name.length)
+    // console.log('to_email', to_email)
+    // console.log('message', message)
+
     try {
-      // Receiver - Admin
-      await emailjs
-        .sendForm(import.meta.env.VITE_EJS_SERVICE_ID, import.meta.env.VITE_EJS_TEMPLATE_RECEIVER_ID, formRef.current, {
-          publicKey: import.meta.env.VITE_EJS_PUBLIC_KEY,
+
+      if (from_name.length <= 0) {
+        setErrorMsg({ email: false, emailStyle: "", name: true, nameStyle: "border-b-[#c31717] border-b-2" })
+        // console.log('name field incorrect')
+      }
+
+      else if (to_email.length <= 0 || !emailRegex.test(to_email) ) {
+        setErrorMsg({ name: false, nameStyle: "", email: true, emailStyle: "border-b-[#c31717] border-b-2" })
+        // console.log('email field incorrect')
+      }
+
+      else {
+        setErrorMsg({ email: false, name: false })
+        // console.log('Form Submitting!');
+        setToggleMsg(true)
+        setSuccessMsg({
+          message: "Form Submitting...",
+          additionalClass: "bg-[#dfb450]"
+        })
+        // console.log('Success');
+
+        setcFormData({
+          name: '',
+          email: '',
+          message: ''
         })
 
-      // Sender - User
-      await emailjs
-        .send(import.meta.env.VITE_EJS_SERVICE_ID, import.meta.env.VITE_EJS_TEMPLATE_SENDER_ID, { from_name: from_name, to_email: to_email, message: message }, {
-          publicKey: import.meta.env.VITE_EJS_PUBLIC_KEY,
+        setToggleMsg(true)
+        setSuccessMsg({
+          message: "Form Submitted Successfully!",
+          additionalClass: "bg-[#46b450]"
         })
+        setTimeout(() => setToggleMsg(false), 2500)
 
-      console.log('Success');
+        // Receiver - Admin
+        await emailjs
+          .sendForm(import.meta.env.VITE_EJS_SERVICE_ID, import.meta.env.VITE_EJS_TEMPLATE_RECEIVER_ID, formRef.current, {
+            publicKey: import.meta.env.VITE_EJS_PUBLIC_KEY,
+          })
 
-      setcFormData({
-        name: '',
-        email: '',
-        message: ''
-      })
-
-      setToggleMsg(true)
-      setSuccessMsg({
-        message: "Form Submitted Successfully!",
-        additionalClass: "bg-[#46b450]"
-      })
-      setTimeout(() => setToggleMsg(false), 2500)
+        // Sender - User
+        await emailjs
+          .send(import.meta.env.VITE_EJS_SERVICE_ID, import.meta.env.VITE_EJS_TEMPLATE_SENDER_ID, { from_name: from_name, to_email: to_email, message: message }, {
+            publicKey: import.meta.env.VITE_EJS_PUBLIC_KEY,
+          })
+      }
 
     }
     catch (err) {
-      setcFormData({
-        name: '',
-        email: '',
-        message: ''
-      })
-      console.log('an Error Occured', err)
+
+      // console.log('an Error Occured', err)
       setToggleMsg(true)
       setSuccessMsg({
-        message: "An Error Occured!",
-        additionalClass: "bg-[#b74556]"
+        message: "An Error Occured while submitting the Form!",
+        additionalClass: "bg-[#b74556] "
       })
       setTimeout(() => setToggleMsg(false), 2500)
+      // setcFormData({
+      //   name: '',
+      //   email: '',
+      //   message: ''
+      // })
     }
   }
 
@@ -139,20 +167,38 @@ const Contact = () => {
               >
 
                 <div>
-                  <label htmlFor="name" className="block mb-2 font-[inter] text-[16px] font-medium text-black-1c ">Your Name</label>
+                  {/* <label htmlFor="name" className="block mb-2 font-[inter] text-[16px] font-medium text-black-1c ">Your Name</label>
                   <input type="text" id="name" name='from_name' value={cFormData.name} onChange={(e) => setcFormData({ ...cFormData, name: e.target.value })}
-                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-visible:outline-[0] block w-full p-2.5 font-[inter] font-regular text-[16px]"
-                    placeholder="eg: John Doe" required
+                    className={`shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-visible:outline-[0] block w-full p-2.5 font-[inter] font-regular text-[16px] ${errorMsg.nameStyle} `}
+                    placeholder="eg: John Doe"
+                  /> */}
+                  <InputBar html_for="name" label_text="Your Name"
+                    type="text" id="name" name="from_name" placeholder="eg: John Doe"
+                    value={cFormData.name} onChange_func={(e) => setcFormData({ ...cFormData, name: e.target.value })}
+                    additionalClassName={errorMsg.nameStyle}
                   />
+                  {
+                    errorMsg.name && <span className='text-[14px]/[20px] text-[#c31717] ' >The Field is required</span>
+                  }
+
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block mb-2 font-[inter] text-[16px] font-medium text-black-1c ">Your Email</label>
+                  {/* <label htmlFor="email" className="block mb-2 font-[inter] text-[16px] font-medium text-black-1c ">Your Email</label>
                   <input
                     type="email" id="email" name='from_email' value={cFormData.email} onChange={(e) => setcFormData({ ...cFormData, email: e.target.value })}
-                    className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-visible:outline-[0] block w-full p-2.5 font-[inter] font-regular text-[16px]"
-                    placeholder="eg: name@flowbite.com" required
+                    className={`shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-visible:outline-[0] block w-full p-2.5 font-[inter] font-regular text-[16px] ${errorMsg.emailStyle} `}
+                    placeholder="eg: name@flowbite.com"
+                  /> */}
+
+                  <InputBar html_for="email" label_text="Your Email"
+                    type="email" id="email" name="from_email" placeholder="eg: name@flowbite.com"
+                    value={cFormData.email} onChange_func={(e) => setcFormData({ ...cFormData, email: e.target.value })}
+                    additionalClassName={errorMsg.emailStyle}
                   />
+                  {
+                    errorMsg.email && <span className='text-[14px]/[20px] text-[#c31717] ' >The Field is Incorrect!</span>
+                  }
                 </div>
 
                 {/* <div>
@@ -164,7 +210,8 @@ const Contact = () => {
                   <label htmlFor="message" className="block mb-2 font-[inter] text-[16px] font-medium text-black-1c">Your Message</label>
                   <textarea
                     id="message" rows="8" name='message' value={cFormData.message} onChange={(e) => setcFormData({ ...cFormData, message: e.target.value })}
-                    className="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg shadow-sm border border-gray-300 font-[inter] focus-visible:outline-[0] font-regular text-[16px]"
+                    // className="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg shadow-sm border border-gray-300 font-[inter] focus-visible:outline-[0] font-regular text-[16px]"
+                    className="w-full border border-[#737373] outline-0 px-[16px] py-[12px] text-[18px]/[26px] rounded-[6px] focus:border-sky-500 "
                     placeholder="Leave a messege..."></textarea>
                 </div>
 

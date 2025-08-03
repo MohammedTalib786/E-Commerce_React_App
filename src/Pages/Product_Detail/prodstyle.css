@@ -1,0 +1,20 @@
+.dang-cont ul{
+    margin-top: 15px;
+    margin-left: 20px;
+} 
+
+
+.dang-cont li{
+    list-style: circle;
+    font-family: 'inter';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    margin-top: 10px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .dang-cont li{
+    font-size: 14px;
+  }
+}
