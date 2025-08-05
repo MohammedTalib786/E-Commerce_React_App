@@ -12,12 +12,12 @@ import SearchBarMob from '../SearchBar/SearchBarMob'
 
 
 
-const BottomHeader = () => {
+const BottomHeaderBackup = () => {
 
-    // const { scrollY } = useScroll();
-    // let [navTopVal, setNavTopVal] = useState('90px')
+    const { scrollY } = useScroll();
+    let [navTopVal, setNavTopVal] = useState('90px')
 
-    // useMotionValueEvent(scrollY, 'change', (event) => event > 25 ? setNavTopVal('0px') : setNavTopVal('90px'))
+    useMotionValueEvent(scrollY, 'change', (event) => event > 25 ? setNavTopVal('0px') : setNavTopVal('90px'))
 
     // useMotionValueEvent(scrollY, 'change', (event) => {
 
@@ -34,15 +34,17 @@ const BottomHeader = () => {
 
     return (
 
+
+
         <>
 
 
             {/* >>>>>>>>>>>>>>> Desktop Header */}
-            <div
-                // animate={{ top: navTopVal }}
-                // transition={{ type: 'spring', stiffness: 350, damping: 30, }}
-                className="bottom_header  gt-tab:flex hidden  z-40 flex-wrap items-center gap-4 mx-auto w-full  border-t border-b border-[#E0E0E0] py-[17px] bg-white "
-                // style={{ top: navTopVal }}
+            <motion.div
+                animate={{ top: navTopVal }}
+                transition={{ type: 'spring', stiffness: 350, damping: 30, }}
+                className="bottom_header  gt-tab:flex hidden  fixed z-40 flex-wrap items-center gap-4 mx-auto w-full  border-t border-b border-[#E0E0E0] py-[17px] bg-white "
+                style={{ top: navTopVal }}
             >
 
                 <div className=' head_foot_cont max-w-[1440px] flex flex-wrap items-center gap-4  mx-auto w-full ' id='collapseMenu' >
@@ -68,23 +70,23 @@ const BottomHeader = () => {
 
 
                 </div>
-            </div>
+            </motion.div>
 
 
             {/* >>>>>>>>>>>>>>> Mobile Header */}
-            <div
-                // animate={{ top: navTopVal }}
-                // transition={{ type: 'spring', stiffness: 350, damping: 30, }}
+            <motion.div
+                animate={{ top: navTopVal }}
+                transition={{ type: 'spring', stiffness: 350, damping: 30, }}
                 className='w-full  gt-tab:hidden flex  bg-[#f1f1f1]  py-[10px] px-[30px] fixed z-40 '
-                // style={{ top: navTopVal }}
+                style={{ top: navTopVal }}
             >
                 <SearchBarMob />
-            </div>
+            </motion.div>
         </>
     )
 }
 
 
-export default BottomHeader;
+export default BottomHeaderBackup;
 
 

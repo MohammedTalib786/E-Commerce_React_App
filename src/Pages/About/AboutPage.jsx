@@ -35,13 +35,7 @@ const About = () => {
     >
 
 
-      <motion.div
-
-
-        ref={hero.ref}
-        initial={{ opacity: 0 }}
-        animate={hero.isInView ? { opacity: 1 } : {}} // Only animate if in view
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <div
         className=" about_spotlight_bg bg-center bg-cover bg-no-repeat w-full h-[80vh] flex"
         style={{ backgroundImage: `url(${about})` }}
       // style={{ marginBottom: "100vh", padding: "2rem", background: "#eee" }}
@@ -52,15 +46,10 @@ const About = () => {
           <h1 className="font-[inter] font-bold text-[60px] text-white mt-[20px] relative z-10 " >About Us</h1>
         </div>
 
-      </motion.div>
+      </div>
 
-      <motion.div
-        ref={content.ref}
-        initial={{ opacity: 0, y: 50 }}
-        animate={content.isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <div  
         className="container_layout"
-      // style={{ marginBottom: "100vh", padding: "2rem", background: "#eee" }}
       >
         <div className="lg:py-[100px] py-[50px] flex  flex-col-reverse gap-10 lg:flex-row">
           <div className="lg:w-[60%] w-[100%] lg:pr-[100px] pr-[0px] ">
@@ -73,22 +62,17 @@ const About = () => {
           </div>
           <img className='lg:w-[40%] w-[100%] lg:h-[500px] h-auto float-right rounded-[10px]' src={paraImg} alt="" />
         </div>
-      </motion.div>
+      </div>
 
       {/* counter */}
-      <motion.div
-        ref={counters.ref}
-        initial={{ opacity: 0, y: 50 }}
-        animate={counters.isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <div
         className="w-[100%] flex flex-row flex-wrap border-1 border-[#e5e7eb]"
-      // style={{ marginBottom: "100vh", padding: "2rem", background: "#eee" }}
       >
         <NumberCounter width={'w-[50%] lg:w-[25%]'} title={"clients"} number={100} />
         <NumberCounter width={'w-[50%] lg:w-[25%]'} title={"Industries Serve"} number={35} />
         <NumberCounter width={'w-[50%] lg:w-[25%]'} title={"Countries Presence"} number={50} />
         <NumberCounter width={'w-[50%] lg:w-[25%]'} title={"Years Of Experience"} number={16} />
-      </motion.div>
+      </div>
 
 
       <div
@@ -97,23 +81,15 @@ const About = () => {
       >
         <div className="inner">
 
-          <motion.div
-            ref={missionSectionOne.ref}
-            initial={{ opacity: 0, y: 50 }}
-            animate={missionSectionOne.isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
-            transition={{ duration: 0.8, ease: "easeOut" }}
+          <div
             className="upperDiv lg:py-[150px] py-[75px] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center m-auto"
             style={{ backgroundImage: `url(${purpose})` }}
           >
             <h3 className='font-inter font-bold lg:text-[60px] md:text-[50px] text-[30px] text-[#fff]'>Our Purpose</h3>
             <p className='font-inter font-normal text-[18px] text-center text-[#fff]'>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            ref={missionSectionTwo.ref}
-            initial={{ opacity: 0, y: 50 }}
-            animate={missionSectionTwo.isInView ? { opacity: 1, y: 0 } : {}} // Only animate if in view
-            transition={{ duration: 0.8, ease: "easeOut" }}
+          <div
             className="lowerDiv flex flex-row"
           >
             <div className="lowerFirstDiv bg-no-repeat bg-cover bg-center px-[20px]  w-[50%] flex flex-col justify-center items-center " style={{ backgroundImage: `url(${mission})` }}>
@@ -130,7 +106,7 @@ const About = () => {
               <h4 className='font-inter font-bold text-[24px] text-[#78b5ad] mt-[50px]' >Excellence</h4>
               <p className='font-inter font-medium text-[18px] text-[#d9d9d9]'>Lorem, ipsum dolor sit amet</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 

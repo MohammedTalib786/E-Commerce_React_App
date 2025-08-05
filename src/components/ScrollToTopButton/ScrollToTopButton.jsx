@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { FaAngleUp } from "react-icons/fa6";
-import './scrollToTop.css'
+import './scrollToTopButton.css'
 
 
-const ScrollToTop = () => {
+const ScrollToTopButton = () => {
     let [toggleClass, setToggleClass] = useState(false)
     // window.addEventListener('scroll', () => window.pageYOffset > 100 ? btn.classList.add('active') : btn.classList.remove('active'))
 
@@ -22,4 +22,4 @@ const ScrollToTop = () => {
     )
 }
 
-export default ScrollToTop
+export default ScrollToTopButton

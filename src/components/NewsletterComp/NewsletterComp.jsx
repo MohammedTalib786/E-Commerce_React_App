@@ -16,6 +16,7 @@ const NewsletterComp = () => {
 
     let [errorMsg, setErrorMsg] = useState({
         error_email: false,
+        error_msg: "",
         success_form: false,
     })
 
@@ -33,20 +34,18 @@ const NewsletterComp = () => {
         try {
 
             if (to_email.length <= 0) {
-                setErrorMsg({ success_form: false, error_email: true })
-                setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 12000)
+                setErrorMsg({ success_form: false, error_email: true, error_msg: "The Field is Empty!" })
+                setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 5000)
                 // console.log('email field is empty!')
             }
 
             else if (!emailRegex.test(to_email)) {
-                setErrorMsg({ success_form: false, error_email: true })
-                setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 12000)
+                setErrorMsg({ success_form: false, error_email: true, error_msg: "The Field is Incorrect!" })
+                setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 5000)
                 // console.log('email field is incorrect!')
             }
 
             else {
-                setErrorMsg({ error_email: false, success_form: true })
-                setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 2000)
 
                 // Receiver - Admin
                 await emailjs
@@ -61,12 +60,17 @@ const NewsletterComp = () => {
                     })
 
                 console.log('Success Newsletter Form Submitted!');
+                setErrorMsg({ error_email: false, error_msg: "", success_form: true })
+                setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 2000)
                 setEmailValue('');
+
             }
         }
         catch (err) {
             console.log('an Error Occured', err);
             setEmailValue('');
+            setErrorMsg({ error_email: true, error_msg: "An Error Occured!", success_form: false })
+            setTimeout(() => setErrorMsg({ error_email: false, success_form: false }), 2000)
         }
 
     }
@@ -93,7 +97,7 @@ const NewsletterComp = () => {
                         />
 
                         {
-                            errorMsg.error_email && <span className=' text-[#c31717]  w-full px-[6px] py-[4px] text-[15px]/[21px] font-medium absolute bottom-[-30px] ' >The Field is Incorrect!</span>
+                            errorMsg.error_email && <span className=' text-[#c31717]  w-full px-[6px] py-[4px] text-[15px]/[21px] font-medium absolute bottom-[-30px] ' >{errorMsg.error_msg}</span>
                         }
                         {
                             errorMsg.success_form && <span className=' text-[#00a90e]  w-full px-[6px] py-[4px] text-[15px]/[21px] font-medium absolute bottom-[-30px] ' >You've successfully subscribed!</span>

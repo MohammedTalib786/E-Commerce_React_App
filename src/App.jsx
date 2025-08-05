@@ -15,6 +15,7 @@ import Contact from './Pages/Contact/Contact';
 import CheckoutPage from './Pages/Checkout/CheckoutPage';
 import SearchListing from './Pages/SearchListingPage/SearchListing';
 import Lenis from 'lenis';
+import ScrollToTopFunc from './components/ScrollToTopFunc/ScrollToTopFunc';
 
 
 const App = () => {
@@ -108,9 +109,7 @@ const App = () => {
 
 
 
-
   // >>>>>>>>>>>>>>>> Initialize Lenis (Smooth Scroll Library)
-
   useEffect(() => {
     // Initialize Lenis
     // const lenis = new Lenis();
@@ -127,12 +126,6 @@ const App = () => {
     });
 
 
-    // Listen for the scroll event and log the event data
-    lenis.on('scroll', (e) => {
-      // console.log('Initialized Lenis!');
-      // console.log(e);
-    });
-
     // Use requestAnimationFrame to continuously update the scroll
     function raf(time) {
       lenis.raf(time);
@@ -141,8 +134,14 @@ const App = () => {
 
     requestAnimationFrame(raf);
 
-    // >>>>>>>>>>>>>>>>>>> ENDS Initialize LENIS
-  })
+    return () => {
+      lenis.destroy(); // IMPORTANT cleanup to avoid memory leaks and double scroll handling
+    };
+
+  }, [])
+  // >>>>>>>>>>>>>>>>>>> ENDS Initialize LENIS
+
+
 
   return (
     <>
@@ -150,6 +149,8 @@ const App = () => {
       <ProdProvider value={{ cartProducts, addToCartFunc, changeQuantityFunc, removeFromCartFunc }} >
 
         <ShippingDetProvider value={{ shippingDetails, addShippingDetails }}  >
+
+          <ScrollToTopFunc />
 
           <Routes>
 
