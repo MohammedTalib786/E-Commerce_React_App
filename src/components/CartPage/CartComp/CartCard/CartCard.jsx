@@ -57,7 +57,7 @@ const CartCard = ({
             <Link to={`/products/${slug}`}   className=' w-full ' >
                 <div className="prodInfo  flex w-full items-center gap-[30px] ">
                     <img src={feat_img}
-                        alt="" className='w-[110px] '
+                        alt="" className='w-[110px] rounded-[12px] '
 
                     />
                     <div className="text">

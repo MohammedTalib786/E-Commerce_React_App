@@ -13,6 +13,8 @@
     "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@react-three/drei": "^10.6.1",
+    "@react-three/fiber": "^9.3.0",
     "@tailwindcss/vite": "^4.1.4",
     "emailjs": "^4.0.3",
     "framer-motion": "^12.22.0",
@@ -25,6 +27,7 @@
     "react-router-dom": "^7.5.3",
     "swiper": "^11.2.6",
     "tailwindcss": "^4.1.4",
+    "three": "^0.179.1",
     "vite-plugin-svgr": "^4.3.0"
   },
   "devDependencies": {

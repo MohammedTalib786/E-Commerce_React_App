@@ -34,7 +34,6 @@ const ProductDetail = () => {
         return ("no product found")
     }
 
-
     // console.log('useProdForDet Main hook in Detail Page', useProdList);
 
     return (
@@ -48,12 +47,12 @@ const ProductDetail = () => {
                             </div>
                             <div className='py-[10px] lg:mt-[50px] w-full flex flex-wrap sm:flex-nowrap gap-[50px]' >
 
+
                                 {/* >>>>>>>>>>>>> Left Section */}
                                 <div className="left_sec w-[100%] md:w-[50%]" >
                                     {/* >>>>>>>>>> Image Gallery Slider */}
                                     <ImageGallerySlider
-                                        // apiImg={prodData.img_gallery}
-                                        apiImg={[placeholderImg, placeholderImg, placeholderImg, placeholderImg]}
+                                        apiImg={!prodData.img_gallery || prodData.img_gallery.length < 2 ? [placeholderImg, placeholderImg, placeholderImg, placeholderImg] : prodData.img_gallery}
                                     />
                                 </div>
 

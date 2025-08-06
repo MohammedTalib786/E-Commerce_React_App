@@ -80,14 +80,15 @@ const Products = () => {
                                 : error ?
                                     (<p className="text-red-500">Something went wrong: {error.message}</p>) :
                                     (
-                                        prodData.filter(item => checkValue.length === 0 ? prodData : item.category === `${checkValue}`  ).map(elem => <ProductCard
+                                        prodData.filter(item => checkValue.length === 0 ? prodData : item.category === `${checkValue}`).map(elem => <ProductCard
                                             urlToProd={elem.slug}
                                             key={elem.id}
+                                            id={elem.id}
+                                            slug={elem.slug}
                                             boxWidth={"lg:w-[30%] md:w-[46%]"}
                                             name={elem.name}
                                             price={elem.price.sale_price}
-                                            // featImg={elem.feat_img}
-                                            featImg={placeholderImg}
+                                            featImg={!elem.feat_img || elem.feat_img == "empty" ? placeholderImg : elem.feat_img}
                                             prodCat={elem.category}
                                         />
                                         )

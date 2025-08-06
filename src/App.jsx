@@ -111,34 +111,29 @@ const App = () => {
 
   // >>>>>>>>>>>>>>>> Initialize Lenis (Smooth Scroll Library)
   useEffect(() => {
-    // Initialize Lenis
-    // const lenis = new Lenis();
-
     const lenis = new Lenis({
       lerp: 0.1,
       smooth: true,
       smoothTouch: true,
       duration: 2,
-      autoRaf: true,
-      anchors: true,
-      // infinite: true,
-      // easing: () => (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      autoRaf: false, // disable the internal loop
     });
 
+    let animationFrame;
 
-    // Use requestAnimationFrame to continuously update the scroll
-    function raf(time) {
+    const raf = (time) => {
       lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy(); // IMPORTANT cleanup to avoid memory leaks and double scroll handling
+      animationFrame = requestAnimationFrame(raf);
     };
 
-  }, [])
+    animationFrame = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(animationFrame); // ✅ Clean up
+      lenis.destroy();
+    };
+  }, []);
+
   // >>>>>>>>>>>>>>>>>>> ENDS Initialize LENIS
 
 
