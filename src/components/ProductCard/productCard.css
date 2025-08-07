@@ -2,6 +2,11 @@
 .prod_card,
 .prod_card:hover {
     transition: all .25s ease-in-out;
+    box-shadow: -3px 6px 22px 0px #d5d5d5;
+}
+
+.prod_card img {
+    transition: all .25s ease-in-out;
 }
 
 .add_to_cart_btn {
@@ -11,14 +16,10 @@
     top: 290px;
 }
 
-/* .prod_card:hover .add_to_cart_btn {
-    opacity: 1;
-    pointer-events: all;
-    top: 290px;
-} */
-
-/* add_to_cart_btn */
-
+.prod_card:hover img {
+    transform: translate(0px, -22px);
+    scale: 1.28;
+}
 
 .item_added_toolTip::after {
     content: '';
@@ -29,28 +30,10 @@
     bottom: -9px;
     right: 95px;
     transform: rotate(45deg) translate(0px, 0px);
-
 }
 
 .item_added_toolTip {
     transition: all .25s ease-in-out;
 }
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>> ToolTip Style */
-
-/* .toolTipStyle {
-    opacity: 1;
-    scale: 1;
-    pointer-events: all;
-    transform: translate(0px, 0px);
-    transition: all .45s ease-in-out;
-}
-
-.toolTipStyleToggle {
-    opacity: 0;
-    scale: .5;
-    pointer-events: none;
-    transform: translate(0px, 70px);
-    transition: all .45s ease-in-out;
-} */
-
+/* ENDS CSS */

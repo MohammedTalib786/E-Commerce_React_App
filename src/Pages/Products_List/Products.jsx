@@ -1,4 +1,4 @@
-import {React, useState } from 'react'
+import { React, useState } from 'react'
 // import ProductCard from '../../components/ProductCard/ProductCard'
 import ProductCard from '../../components/ProductCard/ProductCard'
 import '../../components/layout.css'
@@ -10,32 +10,27 @@ import placeholderImg from '../../assets/placeholder_img.png'
 
 
 const Products = () => {
-
     let productsAPI = import.meta.env.VITE_PRODUCT_API_KEY;
     // console.log('Vite API Key', import.meta.env.VITE_PRODUCT_API_KEY)
-
 
     let useProdList = useFetch(productsAPI);
 
     let loader = useProdList.loader;
     let error = useProdList.error;
     let prodData = useProdList.data;
-    
-    let [checkValue, setcheckValue] = useState([])
-  
-    const checkBoxChanged = (e) => {
-        let {value, checked} = e.target;
 
-        if(checked){
+    let [checkValue, setcheckValue] = useState([])
+
+    const checkBoxChanged = (e) => {
+        let { value, checked } = e.target;
+
+        if (checked) {
             setcheckValue([value])
         }
-        else{
+        else {
             setcheckValue([])
         }
-        
-        
     }
-    
 
     return (
 
@@ -55,25 +50,24 @@ const Products = () => {
                         <h3 className="font-[inter] font-[500] lg:text-[18px] text-[16px] border-b-1 pb-[10px]">Search by category</h3>
                         <div className="checkbox-cat flex flex-col md:mt-[30px] mt-[20px]">
                             <div className="chkbox flex flex-row gap-2">
-                                 <label htmlFor="coverCases" className='font-[inter] font-[500] lg:text-[15px] text-[12px]'> <input type="checkbox" name="Covers and Cases" value='Covers and Cases' id="coverCases" onChange={checkBoxChanged} className='mr-[10px]' />
-                               Cover and Cases</label>
+                                <label htmlFor="coverCases" className='font-[inter] font-[500] lg:text-[15px] text-[12px]'> <input type="checkbox" name="Covers and Cases" value='Covers and Cases' id="coverCases" onChange={checkBoxChanged} className='mr-[10px]' />
+                                    Cover and Cases</label>
 
                             </div>
                             <div className="chkbox flex flex-row gap-2 my-[20px]">
                                 <label htmlFor="powerBanks" className='font-[inter] font-[500] lg:text-[15px] text-[12px]'><input type="checkbox" name="powerBanks" value='Power Banks' id="powerBanks" onChange={checkBoxChanged} className='mr-[10px]' />
-                                Power Banks</label>
+                                    Power Banks</label>
 
                             </div>
                             <div className="chkbox flex gap-2 flex-row">
-                                <label htmlFor="belts"  className='font-[inter] font-[500] lg:text-[15px] text-[12px]'><input type="checkbox" name="belts" value='Stand and Straps' id="belts" onChange={checkBoxChanged} className='mr-[10px]' />
-                                Stand and Straps</label>
+                                <label htmlFor="belts" className='font-[inter] font-[500] lg:text-[15px] text-[12px]'><input type="checkbox" name="belts" value='Stand and Straps' id="belts" onChange={checkBoxChanged} className='mr-[10px]' />
+                                    Stand and Straps</label>
                             </div>
                         </div>
                     </div>
 
 
-
-                    <div className="flex lg:w-[80%] md:w-[75%] w-full flex-wrap justify-center items-center gap-[20px] md:mb-[100px] mb-10">
+                    <div className="flex lg:w-[80%] md:w-[75%] w-full flex-wrap justify-center items-center gap-[35px] md:mb-[100px] mb-10">
                         {
                             loader ?
                                 (<Loader />)
@@ -97,7 +91,6 @@ const Products = () => {
                     </div>
 
                 </div>
-
 
             </div>
         </div>

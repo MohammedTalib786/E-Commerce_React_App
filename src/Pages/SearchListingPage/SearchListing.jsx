@@ -44,9 +44,7 @@ const SearchListing = () => {
     }, [query, prodData, blogData])
 
 
-    console.log('Main Result for Query: Italian Pueblo', results);
-
-
+    // console.log('Main Result for Query: Italian Pueblo', results);
 
     return (
 
@@ -67,7 +65,7 @@ const SearchListing = () => {
                             <SkeletonLoader /> :
                             results.length <= 0 ?
                                 <SearchBox name="No Results Found!" /> :
-                                results.map(elem => <SearchBox name={elem.name} slug={elem.slug} />)
+                                results.map((elem, ind) => <SearchBox key={ind} name={elem.name} slug={elem.slug} />)
                     }
 
 

@@ -1,0 +1,11 @@
+.image-gallery-slide.image-gallery-center img.image-gallery-image {
+    object-fit: cover;
+}
+
+nav.image-gallery-thumbnails-container {
+    display: flex;
+}
+
+nav.image-gallery-thumbnails-container>button.image-gallery-thumbnail {
+    width: 100%;
+}

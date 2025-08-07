@@ -47,14 +47,15 @@ const ProductCard = ({
 
     return (
         <>
-            <div className={`prod_card flex flex-col gap-[12px] py-[24px] px-[16px] cursor-pointer ${boxWidth} bg-[#f6f6f6] rounded-[9px]`} >
+            <div className={`prod_card flex flex-col gap-[12px] p-[20px] cursor-pointer ${boxWidth} bg-[#eeeeee] rounded-[9px] overflow-hidden `}
+            >
                 <Link to={`/products/${urlToProd}`} >
 
-                    <div className="w-[100%] flex flex-col items-center mt-3">
-                        <img src={featImg} alt="prod-img" className='lg:w-[200px] lg:h-[250px] object-cover rounded-lg ' />
+                    <div className="w-[100%] flex flex-col items-center">
+                        <img src={featImg} alt="prod-img" className='min-w-[200px] w-full object-cover rounded-lg ' />
 
-                        <div className="texts flex flex-col text-center items-center w-[100%] lg:my-[16px] my-[12px]">
-                            <p className='font-[montserrat] font-[500] text-[#00000087] text-[10px] w-fit px-[10px] py-[04px] bg-[#E3F0FF] rounded-[12px] my-[10px]' >{prodCat}</p>
+                        <div className="texts flex flex-col text-center items-center w-[100%] lg:my-[14px] my-[10px]">
+                            <p className='font-[montserrat] font-[500] text-[#00000087] text-[10px] w-fit px-[10px] py-[04px] bg-[#E3F0FF] rounded-[12px] mb-[10px]' >{prodCat}</p>
                             {/* <button className='font-[montserrat] font-[500] text-[#00000087] text-[10px] w-fit px-[10px] py-[04px] bg-[#E3F0FF] rounded-[12px] my-[10px]' >{prodCat}</button> */}
                             <h3 className='font-[inter] font-[500] lg:text-[16px]/[20px] text-[14px]/[20px] w-[100%] capitalize ' >{name}</h3>
                         </div>
@@ -71,7 +72,7 @@ const ProductCard = ({
                                     // additionalClass="add_to_cart_btn w-[85%] top-[295px] left-[22px] absolute  uppercase transition-all flex justify-center items-center p-[12px 25px] px-[25px] py-[12px] border border-black bg-black text-white hover:bg-white hover:text-black cursor-pointer"
                                     bgClr="bg-black "
                                     borderClr="bg-black"
-                                    additionalClass="add_to_cart_btn w-[85%] font-[inter] font-[500] text-[14px] w-[200px] rounded-[12px] mt-[20px] uppercase transition-all flex justify-center items-center lg:py-[10px] py-[7px] border border-black bg-black text-white hover:bg-white hover:text-black "
+                                    additionalClass="add_to_cart_btn w-[85%] font-[inter] font-[500] text-[14px] w-[200px] rounded-[12px] mt-[10px] uppercase transition-all flex justify-center items-center lg:py-[10px] py-[7px] border border-black bg-black text-white hover:bg-white hover:text-black "
                                 />) :
 
                                 (<Button
@@ -80,7 +81,7 @@ const ProductCard = ({
                                     // additionalClass=" view_cart_btn add_to_cart_btn w-[85%] top-[295px] left-[22px] absolute  uppercase transition-all flex justify-center items-center p-[12px 25px] px-[25px] py-[12px] border border-black bg-black text-white hover:bg-white hover:text-black hover:underline cursor-pointer  "
                                     bgClr="bg-black "
                                     borderClr="bg-black"
-                                    additionalClass=" view_cart_btn add_to_cart_btn underline w-[85%] font-[inter] font-[500] text-[14px] w-[200px] rounded-[12px] mt-[20px] uppercase transition-all flex justify-center items-center lg:py-[10px] py-[7px] border border-black bg-black text-white hover:bg-white hover:text-black "
+                                    additionalClass=" view_cart_btn add_to_cart_btn underline w-[85%] font-[inter] font-[500] text-[14px] w-[200px] rounded-[12px] mt-[10px] uppercase transition-all flex justify-center items-center lg:py-[10px] py-[7px] border border-black bg-black text-white hover:bg-white hover:text-black "
                                 />)
                         }
                     </div>

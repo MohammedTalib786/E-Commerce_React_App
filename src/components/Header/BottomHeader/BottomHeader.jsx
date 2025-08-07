@@ -30,19 +30,12 @@ const BottomHeader = () => {
     let mainCartItemLen = 0;
     cartProducts.map(elem => mainCartItemLen += elem.quantity);
 
-    // console.log('mainCartItemLen', mainCartItemLen)
-
     return (
-
         <>
-
 
             {/* >>>>>>>>>>>>>>> Desktop Header */}
             <div
-                // animate={{ top: navTopVal }}
-                // transition={{ type: 'spring', stiffness: 350, damping: 30, }}
                 className="bottom_header  gt-tab:flex hidden  z-40 flex-wrap items-center gap-4 mx-auto w-full  border-t border-b border-[#E0E0E0] py-[17px] bg-white "
-                // style={{ top: navTopVal }}
             >
 
                 <div className=' head_foot_cont max-w-[1440px] flex flex-wrap items-center gap-4  mx-auto w-full ' id='collapseMenu' >
@@ -63,9 +56,10 @@ const BottomHeader = () => {
                         <li className='max-lg:border-b '>
                             <NavLink to='/contact' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "font-medium lg:hover:text-blue-700 font-inter text-[#1C1C1C] block text-[16px]"} >Contact</NavLink>
                         </li>
-
+                        <li className='max-lg:border-b '>
+                            <NavLink to='/test' className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "font-medium lg:hover:text-blue-700 font-inter text-[#1C1C1C] block text-[16px]"} >Test</NavLink>
+                        </li>
                     </ul>
-
 
                 </div>
             </div>
@@ -76,7 +70,7 @@ const BottomHeader = () => {
                 // animate={{ top: navTopVal }}
                 // transition={{ type: 'spring', stiffness: 350, damping: 30, }}
                 className='w-full  gt-tab:hidden flex  bg-[#f1f1f1]  py-[10px] px-[30px] fixed z-40 '
-                // style={{ top: navTopVal }}
+            // style={{ top: navTopVal }}
             >
                 <SearchBarMob />
             </div>
