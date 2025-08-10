@@ -2,27 +2,31 @@
 @import "tailwindcss";
 
 
-
 @theme {
     --font-inter: "Inter", sans-serif;
-    --color-prim-blue: #0D6EFD;
-    --color-get-grey: #8B96A5;
-    --color-black-1c: #1C1C1C;
-    
+    --font-montserrat: "Montserrat", sans-serif;
+    --color-primary: #0D6EFD;
+    --color-para-black: #1a1a1a;
+    --color-plain-bg-white: #f4f4f4;
+
     /* --breakpoint-gt-mob: 600px; */
     /* initial value works till 767 */
 
     /* tab from 768 to 1023 */
     --breakpoint-tab: 768px;
 
-    /* gt-tab min 1024 no max limit  */
+    /* gt-tab min 1024 to 1200 no max limit  */
     --breakpoint-gt-tab: 1024px;
+    /* desktop min 1201 no max limit  */
+    --breakpoint-desktop: 1201px;
 }
+
 
 :root {
     --heading-font: Inter;
     --body-font: Inter;
     --primary-color: #0D6EFD;
+    --text-color: #1a1a1a;
     --black-color: black;
     --white-color: white;
 }
@@ -31,6 +35,10 @@
 html {
     font-family: Inter;
     scroll-behavior: smooth;
+}
+
+body {
+    background-color: #F4F4F4;
 }
 
 /* .head_foot_cont_full {
@@ -102,3 +110,9 @@ html.lenis body {
 
 /* >>>>>>>>>>>>>>>>>>>>>>>> ENDS LENIS Rec CSS */
 
+
+@media (min-width: 769px) and (max-width: 1279px) {
+    .head_foot_cont#collapseMenu {
+        padding: 0;
+    }
+}

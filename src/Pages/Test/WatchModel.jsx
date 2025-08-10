@@ -10,8 +10,8 @@ const WatchModel = () => {
         // groupRef.current.rotation.x = .4
         const handleScroll = () => {
             if (groupRef.current) {
-                // groupRef.current.rotation.x = window.scrollY * 0.02
-                groupRef.current.rotation.y = window.scrollY * 0.02
+                groupRef.current.rotation.x = window.scrollY * 0.0002
+                groupRef.current.rotation.y = window.scrollY * 0.015
             }
         }
 
@@ -28,4 +28,3 @@ const WatchModel = () => {
 }
 
 export default WatchModel
-

@@ -1,6 +1,7 @@
 import React from 'react'
 
-import logo from '../../../assets/Header/logo.png'
+// import logo from '../../../assets/Header/logo.png'
+import logo from '../../../assets/final_logo.png'
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -18,7 +19,7 @@ import { CiLocationOn } from "react-icons/ci";
 
 const TopFooter = () => {
     return (
-        <footer className=" head_foot_cont_full w-full max-w-[1440px] mx-auto  flex gt-tab:flex-nowrap flex-wrap  gt-tab:gap-[50px] tab:gap-[40px]  gap-x-0 gap-y-[25px]  bg-white pt-[40px] pb-[50px] gt-tab:px-[50px] tab:px-[30px] px-[20px]  ">
+        <footer className=" head_foot_cont_full w-full max-w-[1440px] mx-auto  flex gt-tab:flex-nowrap flex-wrap  gt-tab:gap-[50px] tab:gap-[40px]  gap-x-0 gap-y-[25px]  pt-[40px] pb-[50px] gt-tab:px-[50px] tab:px-[30px] px-[20px]  ">
 
             <div className="columns cols-1 tab:w-[45%] gt-tab:w-full w-full flex flex-col gap-[15px] ">
                 <img src={logo} alt="logo" className='max-w-[150px] ' />

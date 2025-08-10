@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useShippingDetails } from '../../../contexts/ShippingDetProvider';
-import statesJSON from '../../states_JSON/states.json'
+import statesJSON from '../../states_JSON/states.json';
 import Button from '../../FormComp/Button';
 import InputBar from '../../FormComp/InputBar';
 import SelectDropdown from '../../FormComp/SelectDropdown';
@@ -12,75 +12,19 @@ const BillingForm = ({
 }) => {
 
     let { shippingDetails, addShippingDetails } = useShippingDetails();
+    // console.log('shippingDetails inside billing form', shippingDetails);
 
-    // let [formData, setFormData] = useState({
-    //     first_name: "",
-    //     last_name: "",
-    //     street_address: "",
-    //     town_cityInp: "",
-    //     pincodeInp: Number(""),
-    //     stateInp: "Maharashtra",
-    //     phone_number: Number(""),
-    //     email_address: ""
-    // })
-    // let [errorMsg, setErrorMsg] = useState({
-    //     townCity: false,
-    //     pincode: false
-    // })
+    let { pincode, states, town_city } = shippingDetails;
+    // console.log('pincoded', pincode)
+    useEffect(() => {
+        if (pincode || states || town_city) {
+            setFormData({
+                ...formData, town_cityInp: town_city, stateInp: states, pincodeInp: pincode
+            })
+        }
+    }, [])
+
     const regex = /^\d{6}$/;
-    // console.log('shippingDetails in ship form comp ', shippingDetails)
-
-    // const handlerDemo = () => {
-    //     console.log('Click Btn');
-    //     setIsVisible(prev => !prev);
-    // }
-
-    // >>>>>>>>>>>>>>>>>>>>> Form Validation
-    // const dummyHandlerPlaceOrder = () => {
-    //     console.log("Button CLicked");
-
-    // if (formData.town_cityInp === '') {
-    //     console.log('town city inp cant be empty!')
-    //     setErrorMsg({ ...errorMsg, townCity: true })
-    //     setTimeout(() => {
-    //         setErrorMsg({ ...errorMsg, townCity: false })
-    //     }, 1200)
-    // }
-
-    // else if (!formData.pincodeInp || !regex.test(formData.pincodeInp)) {
-    //     console.log('Pincode Invalid!');
-    //     setErrorMsg({ ...errorMsg, pincode: true })
-    //     setTimeout(() => {
-    //         setErrorMsg({ ...errorMsg, pincode: false })
-    //     }, 1200)
-    // }
-
-    // else {
-    //     // townCity, pincode, State
-    //     addShippingDetails(formData.town_cityInp, formData.pincodeInp, formData.stateInp);
-    //     // setIsVisible(prev => !prev);
-    //     // setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: "" })
-    //     setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: formData.stateInp })
-    // }
-
-    //     console.log('formData.first_name', formData.first_name)
-    //     console.log('formData.last_name', formData.last_name)
-    //     console.log('formData.company_name', formData.company_name)
-    //     console.log('formData.phone_number', formData.phone_number)
-    //     console.log('formData.email_address', formData.email_address)
-    //     console.log('formData.pincodeInp', formData.pincodeInp)
-    //     console.log('formData.stateInp', formData.stateInp)
-    //     console.log('formData.street_address', formData.street_address)
-    //     console.log('formData.town_cityInp', formData.town_cityInp)
-
-    // }
-
-    // console.log('Outside Scope', shippingDetails.states)
-
-    // useEffect(() => {
-    //     setFormData({ stateInp: shippingDetails.states })
-    // }, [shippingDetails.states, shippingDetails.pincode, shippingDetails.town_city])
-
 
     return (
         <>
@@ -92,8 +36,10 @@ const BillingForm = ({
 
                     <div className="nameCont relative flex gap-[22px] "  >
                         <div className="">
-                            <InputBar label_text="First Name" type="text" htmlFor="first_name" id="first_name"
+                            <InputBar label_text="First Name" type="text" html_for="first_name" id="first_name"
                                 onChange_func={(e) => setFormData({ ...formData, first_name: e.target.value })}
+                                value={formData.first_name}
+
                             />
                             {
                                 errorMsg.firstName &&
@@ -103,11 +49,10 @@ const BillingForm = ({
                             }
                         </div>
 
-
-
                         <div className="">
-                            <InputBar label_text="Last Name" type="text" htmlFor="last_name" id="last_name"
+                            <InputBar label_text="Last Name" type="text" html_for="last_name" id="last_name"
                                 onChange_func={(e) => setFormData({ ...formData, last_name: e.target.value })}
+                                value={formData.last_name}
                             />
                         </div>
 
@@ -115,8 +60,9 @@ const BillingForm = ({
 
 
                     <div className="emailCont relative "  >
-                        <InputBar label_text="Email" type="email" htmlFor="email_address" id="email_address"
+                        <InputBar label_text="Email" type="email" html_for="email_address" id="email_address"
                             onChange_func={(e) => setFormData({ ...formData, email_address: e.target.value })}
+                            value={formData.email_address}
                         />
 
                         {
@@ -130,8 +76,9 @@ const BillingForm = ({
 
 
                     <div className="phoneCont relative "  >
-                        <InputBar label_text="Phone" type="number" htmlFor="phone_number" id="phone_number"
+                        <InputBar label_text="Phone" type="number" html_for="phone_number" id="phone_number"
                             onChange_func={(e) => setFormData({ ...formData, phone_number: e.target.value })}
+                            value={formData.phone_number ? formData.phone_number : ""}
                         />
 
                         {
@@ -156,8 +103,9 @@ const BillingForm = ({
 
                     <div className="streetAddress relative flex flex-col gap-[22px] "  >
                         <div className="">
-                            <InputBar label_text="Street Address" type="text" htmlFor="streetAddress_1" id="streetAddress_1"
+                            <InputBar label_text="Street Address" type="text" html_for="streetAddress_1" id="streetAddress_1"
                                 onChange_func={(e) => setFormData({ ...formData, street_address: e.target.value })}
+                                value={formData.street_address}
                             />
 
                             {
@@ -172,8 +120,9 @@ const BillingForm = ({
 
 
                     <div className="townCityCont relative "  >
-                        <InputBar label_text="Town/City" type="text" htmlFor="town-city" id="town-city"
+                        <InputBar label_text="Town/City" type="text" html_for="town-city" id="town-city"
                             onChange_func={(e) => setFormData({ ...formData, town_cityInp: e.target.value })}
+                            value={town_city ? town_city : formData.town_cityInp}
                         />
 
                         {
@@ -187,14 +136,19 @@ const BillingForm = ({
 
 
                     <div className="stateCont  relative "  >
-                        <SelectDropdown label_text="State" htmlFor="state" id="state" value={formData.stateInp} onchange_func={(e) => setFormData({ ...formData, stateInp: e.target.value })} options_arr={statesJSON}
+                        <SelectDropdown label_text="State" html_for="state" id="state"
+                            value={states ? states : formData.stateInp}
+                            onchange_func={(e) => setFormData({ ...formData, stateInp: e.target.value })}
+                            options_arr={statesJSON}
                         />
                     </div>
 
 
                     <div className="pinCodeCont relative "  >
-                        <InputBar label_text="PinCode" type="number" htmlFor="pincode" id="pincode"
+                        <InputBar label_text="PinCode" type="number" html_for="pincode" id="pincode"
                             onChange_func={(e) => setFormData({ ...formData, pincodeInp: Number(e.target.value) })}
+                            // value={formData.pincodeInp ? formData.pincodeInp : ""}
+                            value={pincode ? pincode : ""}
                         />
 
                         {

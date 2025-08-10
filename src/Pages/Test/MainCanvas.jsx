@@ -27,18 +27,10 @@ const MainCanvas = () => {
       >
         <Center>
           <WatchModel />
-          {/* <PhoneModel /> */}
+          <PhoneModel />
         </Center>
       </Suspense>
 
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        // minPolarAngle={Math.PI / 2} // locks vertical angle
-        // maxPolarAngle={Math.PI / 2} // locks vertical angle
-        minPolarAngle={0}
-        maxPolarAngle={Math.PI / 2}
-      />
     </Canvas>
   )
 }

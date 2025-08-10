@@ -11,8 +11,8 @@ const PhoneModel = () => {
         groupRef.current.rotation.y = 60
         const handleScroll = () => {
             if (groupRef.current) {
-                // groupRef.current.rotation.x = window.scrollY * 0.02
-                groupRef.current.rotation.y = window.scrollY * 0.02
+                groupRef.current.rotation.x = window.scrollY * 0.002
+                groupRef.current.rotation.y = window.scrollY * 0.01
             }
         }
 

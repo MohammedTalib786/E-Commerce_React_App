@@ -6,7 +6,7 @@ export const shippingDetailsContext = createContext({
         pincode: null,
         states: ""
     },
-    addShippingDetails: () => { }
+    addShippingDetails: () => {}
 })
 
 export const ShippingDetProvider = shippingDetailsContext.Provider;

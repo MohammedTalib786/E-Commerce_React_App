@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 import Layout from './components/Layout'
 import HomePage from './Pages/Home/HomePage'
 import AboutPage from './Pages/About/AboutPage'
@@ -19,6 +19,10 @@ import ScrollToTopFunc from './components/ScrollToTopFunc/ScrollToTopFunc';
 
 
 const App = () => {
+
+  let navigate = useNavigate();
+
+  const [loadingCart, setLoadingCart] = useState(true);
   let [cartProducts, setCartProducts] = useState([
     // {
     //   id: 1,
@@ -54,14 +58,26 @@ const App = () => {
     })
   }
 
-  // >>>>>>>>>>>>>> Get Cart Items and Shipping Details from Local Storage
+
+  // >>>>>>>>>>>>>> Get Cart Items from Local Storage
   useEffect(() => {
+
     let getCartItems = JSON.parse(localStorage.getItem("cartItems"))
     setCartProducts(getCartItems || []);
+    setLoadingCart(false)
+
+  }, [])
+
+
+  // >>>>>>>>>>>>>> Get Shipping Details from Local Storage
+  useEffect(() => {
 
     let getShippingDetails = JSON.parse(localStorage.getItem("shippingDetails"))
     setShippingDetails(getShippingDetails || {});
+
   }, [])
+
+
 
   // >>>>>>>>>>>>>> Set Cart Item
   useEffect(() => {
@@ -141,7 +157,7 @@ const App = () => {
   return (
     <>
 
-      <ProdProvider value={{ cartProducts, addToCartFunc, changeQuantityFunc, removeFromCartFunc }} >
+      <ProdProvider value={{ cartProducts,loadingCart, addToCartFunc, changeQuantityFunc, removeFromCartFunc }} >
 
         <ShippingDetProvider value={{ shippingDetails, addShippingDetails }}  >
 

@@ -6,14 +6,13 @@ const YourOrderComp = () => {
 
     return (
         <>
-            <div className=' w-[40%] bg-red-200 ' >
+            <div className=' w-[40%] bg-red-200 flex flex-col justify-between ' >
 
                 <p>YourOrderComp</p>
 
                 {/* >>>>>>>>>>>>>> Demo Submit Button */}
                 <Button
                     text='Dummy Place Order'
-                    
                     btnWidth='w-[100%]'
                     type="submit"
                 />

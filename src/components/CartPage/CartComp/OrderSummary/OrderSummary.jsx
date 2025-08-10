@@ -34,7 +34,6 @@ const OrderSummary = () => {
     useEffect(() => {
         if (town_city === undefined || town_city === '' || states === '' || states === undefined || pincode === 0 || pincode === '' || pincode === undefined) setShippingMsgText('Calculate Shipping');
         else setShippingMsgText('Update Shipping Details');
-
     }, [shippingDetails])
 
 
@@ -50,8 +49,6 @@ const OrderSummary = () => {
         else if (cartItemSubTotal >= 7001) setShippingCharges(999);
 
     }, [cartItemSubTotal, shippingDetails]);
-
-
 
 
 
@@ -75,21 +72,16 @@ const OrderSummary = () => {
 
         let text = '';
 
-        if (shippingDetails.states === 'Maharashtra' || shippingDetails.states === '', shippingDetails.states === undefined) {
+        if (states === 'Maharashtra' || states === '' || states === undefined) {
             const halfGst = (gstCalc / 2).toFixed(2);
             text = `(includes <span className='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> CGST, <span className='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${halfGst}</span> SGST)`;
         }
 
         else text = `(includes <span className='text-[22px]/[28px] w-[100%] text-[var(--primary-color)] ' >₹${gstCalc.toFixed(2)}</span> IGST)`;
 
-        // console.log('Setting gstText to:', text);
         setGstText(text);
 
-        // console.log('gstText', text)
-
-        // console.log('Main GST Text Call', gstText)
-
-    }, [cartItemTotal, shippingDetails.states,])
+    }, [cartItemTotal, states])
 
 
     let navigate = useNavigate();

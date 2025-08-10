@@ -77,7 +77,7 @@ const ShippingForm = ({
                     className="shippingFormCont flex flex-col gap-[18px] pt-[20px] " >
 
                     <div className="countryCont relative "  >
-                        <InputBar label_text="Country" htmlFor="country" id="country" read_only={true} type="text" value="India" onclick_func={handlerCountryInp}
+                        <InputBar label_text="Country" html_for="country" id="country" read_only={true} type="text" value="India" onclick_func={handlerCountryInp}
                         />
                         {
                             countryMsg &&
@@ -88,12 +88,12 @@ const ShippingForm = ({
                     </div>
 
                     <div className="stateCont  relative "  >
-                        <SelectDropdown label_text="State" htmlFor="state" id="state" value={formData.stateInp} onchange_func={(e) => setFormData({ ...formData, stateInp: e.target.value })} options_arr={statesJSON}
+                        <SelectDropdown label_text="State" html_for="state" id="state" value={formData.stateInp} onchange_func={(e) => setFormData({ ...formData, stateInp: e.target.value })} options_arr={statesJSON}
                         />
                     </div>
 
                     <div className="townCityCont relative "  >
-                        <InputBar label_text="Town/City" htmlFor="town-city" id="town-city" type="text" onChange_func={(e) => setFormData({ ...formData, town_cityInp: e.target.value })}
+                        <InputBar label_text="Town/City" html_for="town-city" id="town-city" type="text" onChange_func={(e) => setFormData({ ...formData, town_cityInp: e.target.value })}
                         />
                         {
                             errorMsg.townCity &&
@@ -104,7 +104,7 @@ const ShippingForm = ({
                     </div>
 
                     <div className="pinCodeCont relative "  >
-                        <InputBar label_text="PinCode" htmlFor="pincode" id="pincode" type="number" onChange_func={(e) => setFormData({ ...formData, pincodeInp: Number(e.target.value) })}
+                        <InputBar label_text="PinCode" html_for="pincode" id="pincode" type="number" onChange_func={(e) => setFormData({ ...formData, pincodeInp: Number(e.target.value) })}
                         />
                         {
                             errorMsg.pincode &&

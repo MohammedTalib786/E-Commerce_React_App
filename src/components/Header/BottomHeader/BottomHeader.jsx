@@ -35,7 +35,7 @@ const BottomHeader = () => {
 
             {/* >>>>>>>>>>>>>>> Desktop Header */}
             <div
-                className="bottom_header  gt-tab:flex hidden  z-40 flex-wrap items-center gap-4 mx-auto w-full  border-t border-b border-[#E0E0E0] py-[17px] bg-white "
+                className="bottom_header  gt-tab:flex hidden  z-40 flex-wrap items-center gap-4 mx-auto w-full  border-t border-b border-[#E0E0E0] py-[17px] "
             >
 
                 <div className=' head_foot_cont max-w-[1440px] flex flex-wrap items-center gap-4  mx-auto w-full ' id='collapseMenu' >

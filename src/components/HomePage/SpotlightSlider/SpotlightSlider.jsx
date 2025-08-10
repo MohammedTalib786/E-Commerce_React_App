@@ -30,7 +30,6 @@ const SpotlightSlider = () => {
     return (
         <div className=" bg-[#F6F6F6] ">
 
-
             <Swiper
                 // install Swiper modules
                 modules={[Navigation, Pagination, A11y]}

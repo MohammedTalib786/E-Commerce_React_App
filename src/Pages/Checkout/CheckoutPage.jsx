@@ -1,8 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BillingForm from '../../components/CheckoutPage/BillingForm/BillingForm';
 import YourOrderComp from '../../components/CheckoutPage/YourOrderComp/YourOrderComp';
+import { useShippingDetails } from '../../contexts/ShippingDetProvider';
+import { useCart } from '../../contexts/ProdProvider';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutPage = () => {
+
+    let { cartProducts, loadingCart } = useCart()
+
+    let navigate = useNavigate();
+
+    // console.log('inside checkout cartProducts', cartProducts)
+
+    useEffect(() => {
+        if (!loadingCart && cartProducts.length === 0) navigate('/cart');
+    }, [cartProducts])
 
     let [formData, setFormData] = useState({
         first_name: "",
@@ -26,8 +39,8 @@ const CheckoutPage = () => {
 
     const pincodeRegex = /^\d{6}$/;
     const phoneNumberRegex = /^\d{10}$/;
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
     // >>>>>>>>>>>>>>>>>>>>> Form Validation
     const dummyHandlerPlaceOrder = (e) => {
@@ -72,7 +85,7 @@ const CheckoutPage = () => {
             return false;
         }
 
-        else if (formData.town_cityInp === '' || !formData.town_cityInp) {
+        else if (formData.town_cityInp == '' || !formData.town_cityInp) {
             console.log('town_city inp cant be empty!')
             setErrorMsg({ ...errorMsg, townCity: true })
             setTimeout(() => {
@@ -98,7 +111,6 @@ const CheckoutPage = () => {
             // setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: "" })
             // setFormData({ town_cityInp: '', pincodeInp: Number(""), stateInp: formData.stateInp })
 
-
             console.log('formData.first_name', formData.first_name)
             console.log('formData.last_name', formData.last_name)
             console.log('formData.phone_number', formData.phone_number)
@@ -108,11 +120,19 @@ const CheckoutPage = () => {
             console.log('formData.street_address', formData.street_address)
             console.log('formData.town_cityInp', formData.town_cityInp)
 
+            setFormData({
+                first_name: "",
+                last_name: "",
+                street_address: "",
+                town_cityInp: "",
+                pincodeInp: Number(""),
+                stateInp: "Maharashtra",
+                phone_number: Number(""),
+                email_address: ""
+            })
 
-            // setFormData({ ...formData, first_name: "" })
             return true;
         }
-
     }
 
 

@@ -5,7 +5,9 @@ import '../header.css'
 import '../../../index.css'
 import { useCart } from '../../../contexts/ProdProvider'
 
-import logo from '../../../assets/Header/logo.png';
+// import logo from '../../../assets/Header/logo.png';
+// import logo from '../../../../final_logo.png';
+import logo from '../../../../src/assets/final_logo.png';
 
 import cartIcon from '../../../assets/Header/cart_icon.svg';
 import { MdOutlineShoppingCart } from "react-icons/md";
@@ -64,7 +66,7 @@ const TopHeader = () => {
 
                 <div className="logoCont w-[20%]  ">
                     <Link to="/" >
-                        <img src={logo} alt="logo" />
+                        <img src={logo} alt="logo" width="150px" />
                     </Link>
                 </div>
 

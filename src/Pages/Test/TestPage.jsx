@@ -22,15 +22,15 @@ const TestPage = () => {
                 </div>
             </div>
 
-            {/* <div className="cont flex p-[50px] min-h-[550px] " >
+            <div className="cont flex p-[50px] min-h-[550px] " >
                 <div className="w-[50%] bg-cyan-200 ">
-                    Left
+                    Can be control by users
                 </div>
                 <div className="w-[50%] bg-blue-300 " >
                     <WatchCanvas />
 
                 </div>
-            </div> */}
+            </div>
 
 
             {/* <TestComp additionalclassName="class3 class4" />
@@ -53,6 +53,13 @@ const TestPage = () => {
                 </div>
                 <div className="w-[50%] bg-pink-400 " >
                     <SingleIPhoneLook />
+                </div>
+            </div>
+
+            <div className="py-[40px] bg-plain-bg-white " >
+                <div className="py-[20px] bg-primary flex flex-col gap-8 text-center  ">
+                <h2 className='font-inter ' >This is a Heading</h2>
+                <p className='font-montserrat text-para-black ' >This is a Paragraph</p>
                 </div>
             </div>
 
