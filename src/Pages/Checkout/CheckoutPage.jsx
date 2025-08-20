@@ -4,8 +4,13 @@ import YourOrderComp from '../../components/CheckoutPage/YourOrderComp/YourOrder
 import { useShippingDetails } from '../../contexts/ShippingDetProvider';
 import { useCart } from '../../contexts/ProdProvider';
 import { useNavigate } from 'react-router-dom';
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 
 const CheckoutPage = () => {
+
+
+    // >>>>>>>>>>>>>>>>> Change Document Title Dynamically
+    useDocumentTitle('Checkout - VoltCart');
 
     let { cartProducts, loadingCart } = useCart()
 

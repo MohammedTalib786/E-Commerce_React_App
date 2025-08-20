@@ -13,10 +13,14 @@ import NumberCounter from '../../components/AnimatedNumber/NumberCounter'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 
 import './about-us.css'
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 
 
 
 const About = () => {
+
+  // >>>>>>>>>>>>>>>>> Change Document Title Dynamically
+  useDocumentTitle('About Us - VoltCart');
 
   const hero = useInViewMotionFades();
   const content = useInViewMotion();
@@ -48,7 +52,7 @@ const About = () => {
 
       </div>
 
-      <div  
+      <div
         className="container_layout"
       >
         <div className="lg:py-[100px] py-[50px] flex  flex-col-reverse gap-10 lg:flex-row">

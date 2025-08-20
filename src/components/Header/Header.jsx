@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import logo from '../../../src/assets/final_logo.png';
+import { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { MdOutlineSearch } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
@@ -8,12 +7,21 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
 import { useCart } from '../../contexts/ProdProvider';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+// import logo from '../../../src/assets/final_logo.png';
+import logo from '../../../src/assets/logo.svg';
 import './header.css'
 import '../../index.css'
-
+import SearchBar from './SearchBar/SearchBar'
 
 const Header = () => {
     // let [openMenu, setOpenMenu] = useState('-540px');
+    const location = useLocation();
+    let [searchBoxOpen, setSearchBoxOpen] = useState({
+        topVal: "-top-[490px]",
+        opacity: 0,
+        pointerEvents: "none"
+    });
+
     let [openMenu, setOpenMenu] = useState({
         left: "-540px",
         opacity: 0,
@@ -33,16 +41,46 @@ const Header = () => {
     useMotionValueEvent(scrollY, 'change', (event) => event > 10 ? setOpenMenu({ left: "-540px", opacity: 0, pointerEvents: "none" }) : '')
 
 
+    useEffect(() => {
+        // console.log("Route changed to:", location.pathname);
+        // You can call analytics or do other side effects here
+        setSearchBoxOpen({
+            topVal: "-top-[490px]",
+            opacity: 0,
+            pointerEvents: "none"
+        })
+    }, [location]);
+
+    const handlerSearchActive = () => {
+        // setSearchBoxOpen(true)
+        console.log('searchBoxOpen', searchBoxOpen)
+        if (searchBoxOpen.opacity === 0) {
+            setSearchBoxOpen({
+                topVal: "top-[85px]",
+                opacity: 1,
+                pointerEvents: "all"
+            })
+        }
+        else {
+            setSearchBoxOpen({
+                topVal: "-top-[490px]",
+                opacity: 0,
+                pointerEvents: "none"
+            })
+        }
+    }
+
+
     return (
-        <header className=' head_foot_cont_full w-full flex flex-col '
+        <header className=' head_foot_cont_full w-full flex flex-col relative z-[9999999999] bg-white border-b border-[#b9b9b9] '
         >
 
             {/* >>>>>>>>>>>>>>> Desktop Header */}
-            <div className='desktop_header gt-tab:flex hidden flex-wrap max-h-[90px] py-[20px] items-center max-w-[1440px] mx-auto gt-tab:px-[30px] desktop:px-[50px]  w-full  border-b border-[#b9b9b9] ' >
+            <div className='desktop_header gt-tab:flex hidden flex-wrap max-h-[90px] py-[20px] items-center max-w-[1440px] mx-auto gt-tab:px-[30px] desktop:px-[50px] w-full bg-transparent ' >
 
                 <div className="logoCont w-[20%]  ">
                     <Link to="/" >
-                        <img src={logo} alt="logo" width="150px" />
+                        <img src={logo} alt="logo" width="155px" />
                     </Link>
                 </div>
 
@@ -78,9 +116,13 @@ const Header = () => {
 
                 <div className="iconsCont desktop:w-[20%] gt-tab:w-[15%] flex justify-end gap-[24px]  ">
 
-                    <Link to='/cart' className="cart-box flex justify-center items-center flex-col relative "  >
-                        <MdOutlineSearch className=' text-[28px]/[28px] text-para-black   ' />
-                    </Link>
+                    <button
+                        onClick={handlerSearchActive}
+                        className="cart-box flex justify-center items-center flex-col relative cursor-pointer "  >
+                        <MdOutlineSearch
+                            className=' text-[28px]/[28px] text-para-black   '
+                        />
+                    </button>
 
                     <button className="wishlist-box flex justify-center items-center flex-col cursor-pointer ">
                         {/* <img src={wishlistIcon} alt="wishlist icon" className="w-[24px] " /> */}
@@ -99,6 +141,12 @@ const Header = () => {
                 </div>
 
             </div>
+
+            {/* {
+                searchBoxOpen && <SearchBar />
+            } */}
+
+            <SearchBar searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen} />
 
 
 
@@ -169,9 +217,12 @@ const Header = () => {
 
                 <div className="iconsCont tab:w-[20%] w-[25%] flex justify-end tab:gap-[24px] gap-[10px]  ">
 
-                    <Link to='/cart' className="cart-box flex justify-center items-center flex-col relative "  >
+                    <button
+                        onClick={handlerSearchActive}
+                        className="cart-box flex justify-center items-center flex-col relative cursor-pointer "
+                    >
                         <MdOutlineSearch className=' tab:text-[32px]/[32px] text-[24px]/[24px] text-para-black   ' />
-                    </Link>
+                    </button>
 
                     <button className="wishlist-box flex justify-center items-center flex-col cursor-pointer ">
                         {/* <img src={wishlistIcon} alt="wishlist icon" className="w-[24px] " /> */}

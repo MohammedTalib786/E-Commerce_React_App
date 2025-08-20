@@ -15,7 +15,8 @@ const ProductCard = ({
     featImg = { placeholderImg },
     boxWidth = "w-full",
     urlToProd,
-    prodCat = "Case & cover"
+    prodCat = "Case & cover",
+    ImageGalleryFirst,
 }) => {
 
     let [btnElement, setBtnElement] = useState('addToCart');
@@ -52,7 +53,28 @@ const ProductCard = ({
                 <Link to={`/products/${urlToProd}`} >
 
                     <div className="w-[100%] flex flex-col items-center">
-                        <img src={featImg} alt="prod-img" className='min-w-[200px] w-full object-cover rounded-lg ' />
+
+                        {/* <img
+                            // src={featImg}
+                            src={hoverImage}
+                            alt="prod-img" className='min-w-[200px] w-full object-cover rounded-lg '
+                        /> */}
+
+                        {/* Crossfade that doesn't collapse layout */}
+                        <div className="image-wrapper">
+                            {/* Base image in normal flow (defines height) */}
+                            <img
+                                src={featImg}
+                                alt="prod-img"
+                                loading="lazy"
+                            />
+                            {/* Hover image overlaid and faded in */}
+                            <img
+                                src={ImageGalleryFirst}
+                                alt="prod-img-hover"
+                                loading="lazy"
+                            />
+                        </div>
 
                         <div className="texts flex flex-col text-center items-center w-[100%] lg:my-[14px] my-[10px]">
                             <p className='font-[montserrat] font-[500] text-[#00000087] text-[10px] w-fit px-[10px] py-[04px] bg-[#E3F0FF] rounded-[12px] mb-[10px]' >{prodCat}</p>

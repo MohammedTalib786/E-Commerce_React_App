@@ -4,9 +4,13 @@ import blogData from '../../../blogdata.json'
 import useFetch from '../../hooks/useFetch';
 import SkeletonLoader from '../../components/Loader/SearchBoxSkeleton';
 import SearchBox from '../../components/SearchListing/SearchBox';
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 
 
 const SearchListing = () => {
+
+    // >>>>>>>>>>>>>>>>> Change Document Title Dynamically
+    useDocumentTitle('Search - VoltCart');
 
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);

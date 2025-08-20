@@ -7,9 +7,14 @@ import useFetch from '../../hooks/useFetch'
 import prodSpotlight from '../../assets/prodListing/productSpot.webp'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 import placeholderImg from '../../assets/placeholder_img.png'
+import useDocumentTitle from '../../hooks/useDocumentTitle'
 
 
 const Products = () => {
+
+    // >>>>>>>>>>>>>>>>> Change Document Title Dynamically
+    useDocumentTitle('Shop All - VoltCart');
+
     let productsAPI = import.meta.env.VITE_PRODUCT_API_KEY;
     // console.log('Vite API Key', import.meta.env.VITE_PRODUCT_API_KEY)
 
@@ -83,6 +88,8 @@ const Products = () => {
                                             name={elem.name}
                                             price={elem.price.sale_price}
                                             featImg={!elem.feat_img || elem.feat_img == "empty" ? placeholderImg : elem.feat_img}
+                                            ImageGalleryFirst={!elem.img_gallery[1] || elem.img_gallery[1] == "empty" ? placeholderImg : elem.img_gallery[1]}
+                                            // ImageGalleryFirst={}
                                             prodCat={elem.category}
                                         />
                                         )

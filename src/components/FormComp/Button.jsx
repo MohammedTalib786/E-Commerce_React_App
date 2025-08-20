@@ -1,9 +1,8 @@
-import React from 'react'
 
 const Button = ({
     text = "Button",
     borderClr = 'border-prim-blue',
-    bgClr = "bg-prim-blue",
+    bgClr = "bg-primary",
     textClr = "text-white",
     hoverBgClr = "bg-white",
     hoverTextClr = "text-black",

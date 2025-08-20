@@ -3,8 +3,13 @@ import { useCart } from '../../contexts/ProdProvider'
 import CartCard from '../../components/CartPage/CartComp/CartCard/CartCard'
 import CartCardForEmpty from '../../components/CartPage/CartComp/CartCard/CartCardForEmpty'
 import OrderSummary from '../../components/CartPage/CartComp/OrderSummary/OrderSummary'
+import useDocumentTitle from '../../hooks/useDocumentTitle'
 
 const Cart = () => {
+
+
+    // >>>>>>>>>>>>>>>>> Change Document Title Dynamically
+    useDocumentTitle('Cart - VoltCart');
 
     let { cartProducts } = useCart()
 

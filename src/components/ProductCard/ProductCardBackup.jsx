@@ -1,115 +1,123 @@
-import React, { useState } from 'react'
-import './productCard.css'
+// import React, { useState } from 'react'
+// import './productCard.css'
 
-import { Link, useNavigate } from 'react-router-dom'
-import { useCart } from '../../contexts/ProdProvider'
-import placeholderImg from '../../assets/placeholder_img.png'
+// import { Link, useNavigate } from 'react-router-dom'
+// import { useCart } from '../../contexts/ProdProvider'
+// import placeholderImg from '../../assets/placeholder_img.png'
+// import Button from '../FormComp/Button'
 
-const ProductCard = ({
-    id,
-    name = "Product Name",
-    price = 500,
-    slug,
-    // featImg = "https://www.tintaccessories.com/wp-content/uploads/2024/01/MagPop-JPEG-1024x1024.jpg",
-    featImg = placeholderImg,
-    boxWidth = "w-full",
-    urlToProd
-}) => {
+// const ProductCard = ({
+//     id,
+//     slug,
+//     name = "Product Name",
+//     price = 500,
+//     // featImg = "https://www.tintaccessories.com/wp-content/uploads/2024/01/MagPop-JPEG-1024x1024.jpg",
+//     featImg = placeholderImg ,
+//     ImageGalleryFirst,
+//     boxWidth = "w-full",
+//     urlToProd,
+//     prodCat = "Case & cover"
+// }) => {
 
-    let [btnElement, setBtnElement] = useState('addToCart');
+//     let [hoverImage, setHoverImage] = useState(featImg)
 
-    let [itemAddedTooltip, setItemAddedTooltip] = useState(true);
+//     let [btnElement, setBtnElement] = useState('addToCart');
 
-    let [toolTipStyle, setToolTipStyle] = useState({
-        opacity: 1,
-        scale: 1,
-        pointerEvents: 'all',
-        transform: 'translate(0px, 0px)',
-        transition: 'all .45s ease-in-out'
-    })
+//     let navigateToCart = useNavigate();
+//     let { addToCartFunc } = useCart();
 
-    let navigateToCart = useNavigate();
-    let { addToCartFunc } = useCart();
+//     const ItemAddToCart = () => addToCartFunc({ id: id, name: name, feat_img: featImg, price: price, slug: slug, quantity: 1 });
 
-    const ItemAddToCart = () => {
-        addToCartFunc({ id: id, name: name, feat_img: featImg, price: price, slug: slug, quantity: 1 });
-        // console.log('Handler Added to Cart func prod det pg');
-    }
+//     const ItemViewCart = () => navigateToCart("/cart")
 
-    const ItemViewCart = () => navigateToCart("/cart")
+//     const checkAddToCartElem = () => setBtnElement(btnElement === "addToCart" ? "viewCart" : "addToCart")
 
-    const checkAddToCartElem = () => setBtnElement(btnElement === "addToCart" ? "viewCart" : "addToCart")
+//     const handlerAddToCart = (e) => {
+//         // >>>>>>>>>>>>>>>>>>>>>>> Calling Main Add to Cart Func
+//         e.stopPropagation();
+//         e.preventDefault();
+//         ItemAddToCart();
+//         checkAddToCartElem();
+//     }
 
-    const handlerAddToCart = (e) => {
-        // >>>>>>>>>>>>>>>>>>>>>>> Calling Main Add to Cart Func
-        e.stopPropagation();
-        e.preventDefault();
-        ItemAddToCart();
-        checkAddToCartElem();
+//     const handlerViewCart = (e) => {
+//         e.stopPropagation();
+//         e.preventDefault();
+//         ItemViewCart();
+//         checkAddToCartElem();
+//     }
 
-        // >>>>>>>>>>>>>>>> For ToolTip
-        setTimeout(() => {
-            setToolTipStyle({
-                opacity: 0,
-                scale: .5,
-                pointerEvents: 'none',
-                transform: 'translate(0px, 70px)',
-                transition: 'all .45s ease-in-out'
-            })
-        }, 1500)
 
-        setTimeout(() => setItemAddedTooltip(false), 2000)
-        // >>>>>>>>>>>>>>>> ENDS For ToolTip
-    }
+//     console.log('Inside Card: ', ImageGalleryFirst)
 
-    const handlerViewCart = (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        ItemViewCart();
-        checkAddToCartElem();
-    }
+//     return (
+//         <>
+//             <div
+//                 onMouseEnter={() => setHoverImage(ImageGalleryFirst)}
+//                 onMouseLeave={() => setHoverImage(featImg)}
+//                 className={`prod_card flex flex-col gap-[12px] p-[20px] cursor-pointer ${boxWidth} bg-[#eeeeee] rounded-[9px] overflow-hidden `} >
 
-    return (
-        <>
-            <div className={`prod_card relative flex flex-col gap-[12px] pb-[20px] cursor-pointer ${boxWidth} `} >
-                <Link to={`/products/${urlToProd}`} >
+//                 <Link to={`/products/${urlToProd}`} >
 
-                    <img src={featImg} alt="prod-img" className=' h-[360px] object-cover w-full  ' />
+//                     <div className="w-[100%] flex flex-col items-center">
+//                         {/* <img
+//                             // src={featImg}
+//                             src={hoverImage}
+//                             alt="prod-img" className='min-w-[200px] w-full object-cover rounded-lg '
+//                         /> */}
 
-                    <div className="texts flex justify-between pt-[12px] ">
-                        <h3 className='  text-[20px]/[26px] w-[100%]  ' >{name}</h3>
-                        <h4 className=' text-[20px]/[26px] text-[var(--primary-color)] w-[35%] text-right  '  > &#8377; {price} </h4>
-                    </div>
+//                         {/* Crossfade wrapper */}
+//                         <div className="image-wrapper">
+//                             <img
+//                                 src={featImg}
+//                                 alt="prod-img"
+//                                 className={`product-image ${hoverImage === featImg ? 'visible' : 'hidden'}`}
+//                             />
+//                             <img
+//                                 src={ImageGalleryFirst}
+//                                 alt="prod-img-hover"
+//                                 className={`product-image ${hoverImage === ImageGalleryFirst ? 'visible' : 'hidden'}`}
+//                             />
+//                         </div>
 
-                    {/* >>>>>>>>>>>>> Item Added to Cart > ToolTip */}
-                    {
-                        btnElement !== "addToCart" ?
-                            (
-                                itemAddedTooltip && <div style={toolTipStyle} className="  item_added_toolTip w-50% bg-[var(--primary-color)] px-[32px] py-[10px] rounded-[12px] absolute bottom-[185px] left-[40px] text-white  "> Item added to Cart</div>
-                            ) :
-                            ""
-                    }
+//                         <div className="texts flex flex-col text-center items-center w-[100%] lg:my-[14px] my-[10px]">
+//                             <p className='font-[montserrat] font-[500] text-[#00000087] text-[10px] w-fit px-[10px] py-[04px] bg-[#E3F0FF] rounded-[12px] mb-[10px]' >{prodCat}</p>
+//                             {/* <button className='font-[montserrat] font-[500] text-[#00000087] text-[10px] w-fit px-[10px] py-[04px] bg-[#E3F0FF] rounded-[12px] my-[10px]' >{prodCat}</button> */}
+//                             <h3 className='font-[inter] font-[500] lg:text-[16px]/[20px] text-[14px]/[20px] w-[100%] capitalize ' >{name}</h3>
+//                         </div>
 
-                    {/* >>>>>>>>>>>>> Add to Cart and View Cart Button */}
-                    {
-                        btnElement === "addToCart" ?
-                            (<button
-                                onClick={handlerAddToCart}
-                                className=' add_to_cart_btn w-[85%] top-[295px] left-[22px] absolute  uppercase transition-all flex justify-center items-center p-[12px 25px] px-[25px] py-[12px] border border-black bg-black text-white hover:bg-white hover:text-black cursor-pointer  '
-                            >Add to Cart</button>) :
-                            (<button
-                                onClick={handlerViewCart}
-                                className=' view_cart_btn add_to_cart_btn w-[85%] top-[295px] left-[22px] absolute  uppercase transition-all flex justify-center items-center p-[12px 25px] px-[25px] py-[12px] border border-black bg-black text-white hover:bg-white hover:text-black hover:underline cursor-pointer  '
-                            >View Cart</button>)
-                    }
+//                         <p className='font-[inter] font-[600] text-center lg:text-[24px] text-[20px] w-[100%]'  > &#8377; {price} </p>
 
-                </Link>
+//                         {/* <button className=' add_to_cart_btn font-[inter] font-[500] text-[14px] w-[200px] rounded-[12px] mt-[20px] uppercase transition-all flex justify-center items-center lg:py-[10px] py-[7px] border border-black bg-black text-white hover:bg-white hover:text-black cursor-pointer' >Add to Cart Old</button> */}
+//                         {
+//                             btnElement === "addToCart" ?
 
-            </div>
+//                                 (<Button
+//                                     text="Add to Cart"
+//                                     handlerClickBtnComp={handlerAddToCart}
+//                                     // additionalClass="add_to_cart_btn w-[85%] top-[295px] left-[22px] absolute  uppercase transition-all flex justify-center items-center p-[12px 25px] px-[25px] py-[12px] border border-black bg-black text-white hover:bg-white hover:text-black cursor-pointer"
+//                                     bgClr="bg-black "
+//                                     borderClr="bg-black"
+//                                     additionalClass="add_to_cart_btn w-[85%] font-[inter] font-[500] text-[14px] w-[200px] rounded-[12px] mt-[10px] uppercase transition-all flex justify-center items-center lg:py-[10px] py-[7px] border border-black bg-black text-white hover:bg-white hover:text-black "
+//                                 />) :
 
-        </>
+//                                 (<Button
+//                                     text="View Cart"
+//                                     handlerClickBtnComp={handlerViewCart}
+//                                     // additionalClass=" view_cart_btn add_to_cart_btn w-[85%] top-[295px] left-[22px] absolute  uppercase transition-all flex justify-center items-center p-[12px 25px] px-[25px] py-[12px] border border-black bg-black text-white hover:bg-white hover:text-black hover:underline cursor-pointer  "
+//                                     bgClr="bg-black "
+//                                     borderClr="bg-black"
+//                                     additionalClass=" view_cart_btn add_to_cart_btn underline w-[85%] font-[inter] font-[500] text-[14px] w-[200px] rounded-[12px] mt-[10px] uppercase transition-all flex justify-center items-center lg:py-[10px] py-[7px] border border-black bg-black text-white hover:bg-white hover:text-black "
+//                                 />)
+//                         }
+//                     </div>
 
-    )
-}
+//                 </Link>
+//             </div>
 
-export default ProductCard
+//         </>
+
+//     )
+// }
+
+// export default React.memo(ProductCard);

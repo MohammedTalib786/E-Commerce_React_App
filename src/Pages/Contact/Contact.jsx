@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import contact from '../../assets/Contact/contactUs.webp'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
@@ -8,9 +8,17 @@ import emailjs from '@emailjs/browser';
 import Button from '../../components/FormComp/Button';
 import InputBar from '../../components/FormComp/InputBar';
 
+import { useAnimation, useScroll } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+
+import ContactSpotlight from '../../components/ContactPage/Spotlight'
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 
 
 const Contact = () => {
+
+  // >>>>>>>>>>>>>>>>> Change Document Title Dynamically
+  useDocumentTitle('Get in Touch - VoltCart');
 
   let formRef = useRef();
   let [errorMsg, setErrorMsg] = useState({
@@ -49,7 +57,7 @@ const Contact = () => {
         // console.log('name field incorrect')
       }
 
-      else if (to_email.length <= 0 || !emailRegex.test(to_email) ) {
+      else if (to_email.length <= 0 || !emailRegex.test(to_email)) {
         setErrorMsg({ name: false, nameStyle: "", email: true, emailStyle: "border-b-[#c31717] border-b-2" })
         // console.log('email field incorrect')
       }
@@ -109,18 +117,68 @@ const Contact = () => {
   }
 
 
+  // >>>>>>>>>>>>>>>>>>>>>>>>> Spotlight ANimation
+
+  const controls = useAnimation();
+  const { scrollYProgress } = useScroll();
+  const location = useLocation();
+
+  const controls3D = useAnimation();
+
+  // Entrance animation on route change or reload
+  useEffect(() => {
+    controls3D.set({ y: 50, opacity: 0 }); // reset before animating in
+    const timer = setTimeout(() => {
+      controls3D.start({
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.8, ease: "easeOut" },
+      });
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [location.pathname, controls3D]);
+
+  // Entrance animation on route change or reload
+  useEffect(() => {
+    controls.set({ y: -50, opacity: 0 }); // reset before animating in
+    const timer = setTimeout(() => {
+      controls.start({
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.8, ease: "easeOut" },
+      });
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [location.pathname, controls]);
+
+  // Scroll animation
+  useEffect(() => {
+    return scrollYProgress.on("change", (latest) => {
+      controls.start({
+        y: latest * -8500, // moves text upward
+        // y: latest * 8500, // moves text downward
+        opacity: 1 - latest * 1.2, // fades out
+        transition: { duration: 0.4 },
+      });
+    });
+  }, [scrollYProgress, controls]);
+
 
   return (
-
     <div>
       <section className="bg-white ">
         <div className="m-auto" >
 
-          <div className="relative h-[500px] bg-cover bg-no-repeat bg-center flex flex-col justify-center px-4" style={{ backgroundImage: `url(${contact})` }}>
+
+          {/* >>>>>>>>>>>>>> Full Width 3D Spotlight */}
+          <ContactSpotlight />
+
+          {/* >>>>>>>>>>>>>>>>> Spotlight */}
+          {/* <div className="relative h-[500px] bg-cover bg-no-repeat bg-center flex flex-col justify-center px-4" style={{ backgroundImage: `url(${contact})` }}>
             <div className="max-w-[1440px] w--[100%] py-[20px] px-[50px] absolute top-0"><BreadCrumbs /></div>
             <h2 className="mb-4 text-4xl lg:text-6xl tracking-tight font-[montserrat] font-[700] text-center text-white dark:text-white">Contact Us</h2>
 
-          </div>
+          </div> */}
 
 
           <div className="container_layout mt-[50px] " >
@@ -230,16 +288,12 @@ const Contact = () => {
                   </div>
                 }
 
-
-
               </form>
 
               <iframe className="w-[100%] md:w-[45%] h-[500px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d824.8908350351486!2d74.34184322233432!3d34.20863162896153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x427a1554541875c5%3A0x767cf96bc9f82add!2sBeyond%20Basic%20Home!5e0!3m2!1sen!2sin!4v1750772833106!5m2!1sen!2sin" />
             </div>
 
           </div>
-
-
         </div>
 
       </section>

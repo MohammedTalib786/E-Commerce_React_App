@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FaAngleUp } from "react-icons/fa6";
 import './scrollToTopButton.css'
-
 
 const ScrollToTopButton = () => {
     let [toggleClass, setToggleClass] = useState(false)
@@ -13,7 +12,7 @@ const ScrollToTopButton = () => {
 
     return (
         <button
-            className={` ${toggleClass ? 'onScrollBtn' : ''} scrollToTopBtn opacity-0 pointer-events-none transition-all bg-prim-blue w-[55px] h-[55px] text-[28px]/[28px] text-white flex justify-center items-center fixed z-[9999] bottom-[10px] right-[40px] rounded-[50%] cursor-pointer `}
+            className={` ${toggleClass ? 'onScrollBtn' : ''} scrollToTopBtn opacity-0 pointer-events-none transition-all bg-primary w-[55px] h-[55px] text-[28px]/[28px] text-white flex justify-center items-center fixed z-[9999] bottom-[10px] right-[40px] rounded-[50%] cursor-pointer `}
             onClick={handlerScrollToTop}
         >
             <FaAngleUp />

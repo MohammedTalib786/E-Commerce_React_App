@@ -1,14 +1,15 @@
-import MainCanvas from '../../components/ThreeJsComp/Blog/MainCanvas'
-import ProductSlider from '../../components/ProductSlider/ProductSlider'
-import FeatProductSlider from '../../components/FeatProductSlider/FeatProductSlider'
-import InformationComp from '../../components/HomePage/InformationComp/InformationComp'
+
+import MainCanvas from '../../components/ThreeJsComp/Contact/MainCanvas'
+// import ProductSlider from '../../components/ProductSlider/ProductSlider'
+// import FeatProductSlider from '../../components/FeatProductSlider/FeatProductSlider'
+// import InformationComp from '../../components/HomePage/InformationComp/InformationComp'
 
 import { motion, useAnimation, useScroll } from "framer-motion";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import BlogSpotlight from '../../components/BlogPage/Spotlight';
 
-const Blogs = () => {
+
+const Spotlight = () => {
     const controls = useAnimation();
     const { scrollYProgress } = useScroll();
     const location = useLocation();
@@ -54,36 +55,31 @@ const Blogs = () => {
     }, [scrollYProgress, controls]);
 
 
+
     return (
-        <>
-            {/* >>>>>>>>>>>>>> Full Width Spotlight */}
-            <BlogSpotlight />
 
-            {/* >>>>>>>>>>>>>> In Cont */}
-            <div className="container_layout mx-auto flex justify-center items-center flex-col   "  >
-                {/* >>>>>>>>>>>>>> Information Comp */}
-                <InformationComp />
-
-                {/* >>>>>>>>>>>>>> Featured Prod Slider */}
-                <FeatProductSlider title="Featured Products" urlText="GO TO SHOP" urlVal="/products" />
-
-                {/* >>>>>>>>>>>>>> Mobile Prod Slider */}
-                <ProductSlider title="Mobile Products" urlText="GO TO SHOP" urlVal="/products" categoryName="Covers and Cases" />
-
-                {/* >>>>>>>>>>>>>> Watch Prod Slider */}
-                <ProductSlider title="Watch Products" urlText="GO TO SHOP" urlVal="/products" categoryName="Stand and Straps" />
-
+        <div className=" w-full h-[650px] flex  "
+            style={{ background: "linear-gradient(#f1f1f1 0%, rgb(187 187 187) 100%)" }} >
+            <div className="left w-[100%] absolute flex justify-center items-center px-[50px] pt-[35px] z-[99] " >
+                <motion.h2
+                    className="text-center text-[130px]/[140px] font-[800] text-black uppercase "
+                    animate={controls}
+                >
+                    Contact
+                </motion.h2>
             </div>
 
+            {/* <div className="right w-[100%]  " >
+                    <MainCanvas />
+                </div> */}
+            <motion.div
+                animate={controls3D}
+                className="right w-[100%]  " >
+                <MainCanvas />
+            </motion.div>
+        </div>
 
-            {/* >>>>>>>>>>>>>> In Cont */}
-            <div className=" h-[200vh] container_layout mx-auto flex justify-center items-center flex-col  "  >
-
-            </div>
-
-
-        </>
     )
 }
 
-export default Blogs
+export default Spotlight

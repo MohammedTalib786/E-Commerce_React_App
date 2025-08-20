@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from "react-router";
 import Layout from './components/Layout'
 import HomePage from './Pages/Home/HomePage'
@@ -16,6 +16,12 @@ import CheckoutPage from './Pages/Checkout/CheckoutPage';
 import SearchListing from './Pages/SearchListingPage/SearchListing';
 import Lenis from 'lenis';
 import ScrollToTopFunc from './components/ScrollToTopFunc/ScrollToTopFunc';
+import IntersectionEx from './Pages/CounterTest/IntersectionEx';
+
+import PrivacyPolicy from './Pages/PrivacyPolicy/PrivacyPolicy';
+import CancellationPolicy from './Pages/CancellationPolicy/CancellationPolicy';
+import TermsOfUse from './Pages/TermsOfUse/TermsOfUse';
+import ShippingPolicy from './Pages/ShippingPolicy/ShippingPolicy';
 
 
 const App = () => {
@@ -157,7 +163,7 @@ const App = () => {
   return (
     <>
 
-      <ProdProvider value={{ cartProducts,loadingCart, addToCartFunc, changeQuantityFunc, removeFromCartFunc }} >
+      <ProdProvider value={{ cartProducts, loadingCart, addToCartFunc, changeQuantityFunc, removeFromCartFunc }} >
 
         <ShippingDetProvider value={{ shippingDetails, addShippingDetails }}  >
 
@@ -185,11 +191,23 @@ const App = () => {
 
               <Route path='/search-listing' element={<SearchListing />} />
 
-              <Route path='*' element={<Error404Page />} />
+              <Route path='/counter-test-1' element={<IntersectionEx />} />
+
+              <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+
+              <Route path='/cancellation-policy' element={<CancellationPolicy />} />
+
+              <Route path='/terms-of-use' element={<TermsOfUse />} />
+
+              <Route path='/shipping-policy' element={<ShippingPolicy />} />
+
+              {/* <Route path='*' element={<Error404Page />} /> */}
 
               <Route path='/test' element={<TestPage />} />
 
             </Route>
+
+            <Route path='*' element={<Error404Page />} />
 
           </Routes>
 

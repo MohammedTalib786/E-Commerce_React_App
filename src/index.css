@@ -23,10 +23,13 @@
 
 
 :root {
-    --heading-font: Inter;
-    --body-font: Inter;
+    --inter-font: "Inter", sans-serif;
+    --montserrat-font: "Montserrat", sans-serif;
     --primary-color: #0D6EFD;
-    --text-color: #1a1a1a;
+
+    --para-black-color: #1a1a1a;
+    --plain-bg-white-color: #f4f4f4;
+
     --black-color: black;
     --white-color: white;
 }
@@ -39,6 +42,7 @@ html {
 
 body {
     background-color: #F4F4F4;
+    overflow-x: hidden;
 }
 
 /* .head_foot_cont_full {
@@ -52,6 +56,91 @@ body {
     max-width: 1440px;
     padding: 0 50px;
 }
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>> Information Pages Styles */
+
+
+.info_pages {
+    /* background-color: var(--primary-color); */
+    display: flex;
+    align-items: flex-start;
+    padding: 50px !important;
+}
+
+.info_pages h1 {
+    font-family: 'Montserrat';
+    font-size: 42px;
+    line-height: 50px;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+
+.info_pages h2 {
+    font-family: 'Montserrat';
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 600;
+    padding-bottom: 8px;
+    padding-top: 10px;
+    /* background-color: red; */
+}
+
+.info_pages h2:first-of-type {
+    padding-top: 0 !important;
+    /* background-color: aqua; */
+}
+
+.info_pages p {
+    font-family: 'Inter';
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    padding-bottom: 10px;
+}
+
+.info_pages p:last-child {
+    padding: 0;
+}
+
+.info_pages ul {
+    list-style-type: disc;
+    margin-left: 26px;
+    padding: 10px 0;
+}
+
+.info_pages ul ul {
+    list-style-type: circle;
+}
+
+.info_pages ul li {
+    padding: 5px 0;
+}
+
+.info_pages p:has(+ ul) {
+    padding-bottom: 0;
+    /* background-color: aqua; */
+}
+
+.info_pages a {
+    /* background-color: red; */
+    color: var(--primary-color);
+}
+
+.info_pages a:hover {
+    text-decoration: underline;
+}
+
+/* .info_pages p:last-child {
+    padding-bottom: 20px;
+} */
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>> ENDS Information Pages Styles */
+
 
 
 @media (min-width: 1200px) {
@@ -86,7 +175,7 @@ body {
 } */
 
 
-/* >>>>>>>>>>>>>>>>>>>>>>>> LENIS Rec CSS */
+/* >>>>>>>>>>>>>>>>>>>>>>>> LENIS Req CSS */
 html.lenis,
 html.lenis body {
     height: auto;
@@ -108,7 +197,7 @@ html.lenis body {
     pointer-events: none;
 }
 
-/* >>>>>>>>>>>>>>>>>>>>>>>> ENDS LENIS Rec CSS */
+/* >>>>>>>>>>>>>>>>>>>>>>>> ENDS LENIS Req CSS */
 
 
 @media (min-width: 769px) and (max-width: 1279px) {

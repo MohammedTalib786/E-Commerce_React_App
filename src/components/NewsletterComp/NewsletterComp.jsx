@@ -77,7 +77,7 @@ const NewsletterComp = () => {
 
 
     return (
-        <div className='w-full bg-[#eff2f4] py-[40px] px-[20px] flex flex-col justify-center items-center   ' >
+        <div className='w-full bg-[#eff2f4] py-[40px] px-[20px] flex flex-col justify-center items-center  border-[#b9b9b9] border-t ' >
             <h3 className='font-[600] text-[20px]/[30px] text-[#1C1C1C] ' >Subscribe on our newsletter</h3>
             <p className='text-[#606060] font-[400] text-[16px]/[26px] pb-[20px] text-center ' >Get daily news on upcoming offers from many suppliers all over the world</p>
 
